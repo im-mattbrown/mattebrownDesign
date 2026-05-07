@@ -196,7 +196,7 @@ export default function About({ dark }) {
       <section className={a.hero}>
         <img
           ref={heroImgRef}
-          src="/images/MattD2.jpg"
+          src="/images/MattDL.jpg"
           alt="Matte Brown"
           className={a.heroImg}
         />
