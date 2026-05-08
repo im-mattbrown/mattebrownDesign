@@ -638,10 +638,10 @@ export default function Home({ dark }) {
           </div>
           <nav data-anim="fade-r" className={s.footerNav}>
             <p className={s.footerNavLabel}>[pages]</p>
-            <a href="#">about</a>
-            <a href="#">Work</a>
-            <a href="#">contact</a>
-            <a href="#">Playground</a>
+            <a href="/about">about</a>
+            <a href="/work">Work</a>
+            <a href="/contact">contact</a>
+            <a href="/playground">Playground</a>
           </nav>
         </div>
       </footer>
