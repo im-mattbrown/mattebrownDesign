@@ -842,64 +842,10 @@
   opacity: 0;
   transition: opacity 0.25s ease;
   flex-shrink: 0;
-  will-change: transform, filter, clip-path;
 }
 
 .menuLink:hover .menuLinkShape {
   opacity: 1;
-  animation: menuShapeGlitch 1.5s linear infinite;
-}
-
-@keyframes menuShapeGlitch {
-  0%, 20%, 100% {
-    transform: translate(0, 0) skewX(0deg);
-    filter: none;
-    clip-path: none;
-    opacity: 1;
-  }
-  2% {
-    transform: translate(-18px, 4px) skewX(-14deg);
-    filter: hue-rotate(90deg) saturate(12) brightness(3) contrast(5);
-    clip-path: inset(0 0 64% 0);
-  }
-  4% {
-    transform: translate(18px, -6px) skewX(14deg);
-    filter: hue-rotate(285deg) saturate(8) brightness(0.15) contrast(6);
-    clip-path: inset(60% 0 0 0);
-    opacity: 0.6;
-  }
-  6% {
-    transform: translate(-22px, 2px) skewX(-10deg);
-    filter: hue-rotate(180deg) saturate(15) contrast(6) brightness(3.5);
-    clip-path: inset(20% 0 35% 0);
-  }
-  9% {
-    transform: translate(22px, -9px) skewX(18deg);
-    filter: hue-rotate(345deg) saturate(7) brightness(2.5) contrast(4);
-    clip-path: inset(74% 0 0 0);
-    opacity: 0.4;
-  }
-  11% {
-    transform: translate(-14px, 9px) skewX(-18deg);
-    filter: hue-rotate(55deg) saturate(10) brightness(0.2) contrast(7);
-    clip-path: inset(0 0 44% 0);
-  }
-  14% {
-    transform: translate(10px, -3px) skewX(8deg);
-    filter: hue-rotate(205deg) saturate(16) contrast(7) brightness(2);
-    clip-path: inset(48% 0 8% 0);
-    opacity: 0.7;
-  }
-  17% {
-    transform: translate(-5px, 1px) skewX(-4deg);
-    filter: hue-rotate(120deg) saturate(5) brightness(1.4);
-    clip-path: inset(8% 0 82% 0);
-  }
-  19% {
-    transform: translate(3px, 0px) skewX(2deg);
-    filter: hue-rotate(20deg) saturate(2) brightness(1.1);
-    clip-path: none;
-  }
 }
 
 /* Hidden on desktop, shown inside mobile menu overlay */

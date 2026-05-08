@@ -31,8 +31,9 @@ export default function Nav({ dark, onToggleDark, navColor }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [hoveredImg, setHoveredImg] = useState(null) // { src, index }
   const menuRef = useRef(null)
-  const stripeTlRef = useRef(null)  // stripe-only timeline — built once, never rebuilt
+  const stripeTlRef = useRef(null)
   const maxDelayRef = useRef(0)
+  const shapeTlRef = useRef(null)
   const router = useRouter()
 
   const textStyle = navColor ? { color: navColor } : {}
@@ -106,6 +107,44 @@ export default function Nav({ dark, onToggleDark, navColor }) {
     setMenuOpen(false)
   }
 
+  function handleShapeEnter(e) {
+    const shape = e.currentTarget.querySelector('[data-link-shape]')
+    if (!shape) return
+    if (shapeTlRef.current) shapeTlRef.current.kill()
+
+    const isDark = document.documentElement.dataset.theme === 'dark'
+    const base = isDark ? 'brightness(0) invert(1)' : 'brightness(0)'
+    const flash = isDark ? 'brightness(0)' : 'brightness(0) invert(1)'
+
+    gsap.set(shape, { opacity: 1, filter: base, x: 0, scaleX: 1 })
+
+    const tl = gsap.timeline()
+    // invert flicker + nudge
+    tl.to(shape, { duration: 0.03, filter: flash, x: 4,  ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, filter: base,  x: -3, ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, filter: flash, x: 2,  ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, filter: base,  x: 0,  ease: 'steps(1)' })
+    // scale distort
+    tl.to(shape, { duration: 0.03, scaleX: 1.5,  ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, scaleX: 0.65, ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, scaleX: 1.2,  ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, scaleX: 1,    ease: 'steps(1)' })
+    // opacity stutter
+    tl.to(shape, { duration: 0.03, opacity: 0, ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, opacity: 1, ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, opacity: 0, ease: 'steps(1)' })
+    tl.to(shape, { duration: 0.03, opacity: 1, ease: 'steps(1)' })
+
+    shapeTlRef.current = tl
+  }
+
+  function handleShapeLeave(e) {
+    const shape = e.currentTarget.querySelector('[data-link-shape]')
+    if (shapeTlRef.current) { shapeTlRef.current.kill(); shapeTlRef.current = null }
+    if (shape) gsap.set(shape, { opacity: 0, filter: 'none', x: 0, scaleX: 1 })
+  }
+
+
   return (
     <>
       <nav data-anim="nav" className={s.nav} style={menuOpen ? { position: 'relative', zIndex: 1001 } : {}}>
@@ -161,11 +200,11 @@ export default function Nav({ dark, onToggleDark, navColor }) {
                 href={href}
                 className={s.menuLink}
                 onClick={(e) => handleNavClick(e, href)}
-                onMouseEnter={() => hoverImg && setHoveredImg({ src: hoverImg, index: i })}
-                onMouseLeave={() => setHoveredImg(null)}
+                onMouseEnter={(e) => { if (hoverImg) setHoveredImg({ src: hoverImg, index: i }); handleShapeEnter(e) }}
+                onMouseLeave={(e) => { setHoveredImg(null); handleShapeLeave(e) }}
               >
                 {label}
-                <img src={shape} alt="" aria-hidden="true" className={s.menuLinkShape} />
+                <img src={shape} alt="" aria-hidden="true" className={s.menuLinkShape} data-link-shape />
               </a>
             ))}
           </nav>
