@@ -38,11 +38,11 @@ const PROJECTS = [
     type: 'WEB APP',
     year: '[2026]',
     slug: 'curl',
-    cells: [null, null, 'desc'],
+    cells: [{ video: 'https://res.cloudinary.com/dzghwkkzb/video/upload/v1778282310/curlSign_ggx6xt.mp4' }, 'desc', { video: 'https://res.cloudinary.com/dzghwkkzb/video/upload/v1778281928/curlDesignVideo_yxhpfr.mp4' }],
     rowClass: 'row3',
     info: {
-      description: 'ADD DESCRIPTION HERE.',
-      tools: ['Tool 1', 'Tool 2', 'Tool 3'],
+      description: 'CURL IS A SITE FOR DISCOVERING INTERESTING THINGS ONLINE. LARGE PLATFORMS HAVE BECOME THE GATEKEEPERS OF ONLINE CONTENT BUT IT DOES NOT HAVE TO BE LIKE THIS. WITH OVER 3000 CURATED SITES ON CURL, USERS CAN FIND NEW AND INTERESTING WEBSITES AND WEB APPLICATIONS BASED ON THEIR INTERESTS.',
+      tools: ['FIGMA', 'CLAUDE', 'CLAUDE CODE', 'NEXT.JS'],
     },
   },
   {
@@ -54,8 +54,8 @@ const PROJECTS = [
     cells: [null, 'desc'],
     rowClass: 'row4',
     info: {
-      description: 'ADD DESCRIPTION HERE.',
-      tools: ['Tool 1', 'Tool 2'],
+      description: 'IF REPLIT AND LOVABLE ARE BIKES WITH TRAINING WHEELS FOR APP BUILDERS, SELFWARE STUDIO IS A BIKE KITCHEN WHERE YOU LEARN TO BUILD THE BIKE BEFORE YOU RIDE. EMPOWERING BUILDERS TO MAKE THEIR OWN SOFTWARE IS THE FUTURE.',
+      tools: ['FIGMA', 'FIGMA MCP', 'CLAUDE CODE', 'NEXT.JS'],
     },
   },
 ]

@@ -94,9 +94,9 @@
   grid-template-columns: 0.67fr 1.33fr 400px;
 }
 
-/* Row 3 — CURL: medium | wide | medium */
+/* Row 3 — CURL: square | wide | desc */
 .row3 {
-  grid-template-columns: 1fr 1.6fr 1fr;
+  grid-template-columns: 400px 1fr 2.1fr;
 }
 
 /* Row 4 — SELFWARE: wide | narrow */
