@@ -8,13 +8,13 @@ const LOGO = '/images/logos/m@Logo.svg'
 const ARROW = '/images/arrowUpRight.svg'
 
 const ALL_LINKS = [
-  { label: 'ABOUT',      href: '/about',      shape: '/images/shape1.svg' },
-  { label: 'WORK',       href: '/work',        shape: '/images/shape2.svg' },
-  { label: 'CONTACT',    href: '/contact',     shape: '/images/shape1.svg' },
-  { label: 'PLAYGROUND', href: '/playground',  shape: '/images/shape2.svg' },
+  { label: 'ABOUT',      href: '/about',      shape: '/images/shape1.svg', hoverImg: '/images/matttrain.jpg' },
+  { label: 'WORK',       href: '/work',        shape: '/images/shape2.svg', hoverImg: '/images/works.jpg' },
+  { label: 'CONTACT',    href: '/contact',     shape: '/images/shape1.svg', hoverImg: null },
+  { label: 'PLAYGROUND', href: '/playground',  shape: '/images/shape2.svg', hoverImg: null },
 ]
 
-const HOME_LINK = { label: 'HOME', href: '/', shape: '/images/shape1.svg' }
+const HOME_LINK = { label: 'HOME', href: '/', shape: '/images/shape1.svg', hoverImg: null }
 
 const ALL_HREFS = ['/', ...ALL_LINKS.map(l => l.href)]
 
@@ -29,6 +29,7 @@ function StartBtn({ color, arrowStyle }) {
 
 export default function Nav({ dark, onToggleDark, navColor }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [hoveredImg, setHoveredImg] = useState(null) // { src, index }
   const menuRef = useRef(null)
   const stripeTlRef = useRef(null)  // stripe-only timeline — built once, never rebuilt
   const maxDelayRef = useRef(0)
@@ -142,14 +143,26 @@ export default function Nav({ dark, onToggleDark, navColor }) {
           ))}
         </div>
         <div className={s.menuContent}>
+          {hoveredImg && (
+            <div
+              key={hoveredImg.index}
+              className={s.menuHoverImg}
+              style={{
+                backgroundImage: `url(${hoveredImg.src})`,
+                bottom: `${300 - hoveredImg.index * 100}px`,
+              }}
+            />
+          )}
           <nav className={s.menuLinks}>
-            {menuLinks.map(({ label, href, shape }) => (
+            {menuLinks.map(({ label, href, shape, hoverImg }, i) => (
               <a
                 key={label}
                 data-menu-link
                 href={href}
                 className={s.menuLink}
                 onClick={(e) => handleNavClick(e, href)}
+                onMouseEnter={() => hoverImg && setHoveredImg({ src: hoverImg, index: i })}
+                onMouseLeave={() => setHoveredImg(null)}
               >
                 {label}
                 <img src={shape} alt="" aria-hidden="true" className={s.menuLinkShape} />

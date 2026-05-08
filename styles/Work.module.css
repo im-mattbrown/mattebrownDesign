@@ -81,7 +81,7 @@
 .bentoImages {
   display: grid;
   gap: 10px;
-  height: 280px;
+  height: 400px;
 }
 
 /* Row 1 — THAT'S ON ME: wide | medium | medium */
@@ -89,9 +89,9 @@
   grid-template-columns: 2fr 1fr 1fr;
 }
 
-/* Row 2 — SHRTCTS: narrow | wide */
+/* Row 2 — SHRTCTS: desc | video | logo square */
 .row2 {
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 0.67fr 1.33fr 400px;
 }
 
 /* Row 3 — CURL: medium | wide | medium */
@@ -110,8 +110,123 @@
   background: var(--bg-secondary, #f0f0f0);
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  box-shadow: 0 16px 54px 0 rgba(26, 31, 29, 0.03), 0 5.1px 17px 0 rgba(26, 31, 29, 0.05), 0 1.9px 6.5px 0 rgba(26, 31, 29, 0.05), 0 0.63px 2.16px 0 rgba(26, 31, 29, 0.05);
 }
 
 [data-theme="dark"] .placeholder {
   background: #1a1a1a;
+}
+
+.cellImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ─── Logo Cell ─────────────────────────────────── */
+.logoCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.logoCellImg {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
+
+/* ─── Description Card ──────────────────────────── */
+.descCard {
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 16px 54px 0 rgba(26, 31, 29, 0.03), 0 5.1px 17px 0 rgba(26, 31, 29, 0.05), 0 1.9px 6.5px 0 rgba(26, 31, 29, 0.05), 0 0.63px 2.16px 0 rgba(26, 31, 29, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .descCard {
+  background: #1a1a1a;
+}
+
+.descSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.descLabel {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.descText {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.toolsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toolsItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.toolsBullet {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  filter: brightness(0) invert(0.4);
+}
+
+[data-theme="dark"] .toolsBullet {
+  filter: brightness(0) invert(0.6);
+}
+
+.caseStudyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 7.5px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-decoration: none;
+  background: transparent;
+  align-self: flex-start;
+  transition: opacity 0.2s ease;
+}
+
+.caseStudyBtn:hover {
+  opacity: 0.6;
+}
+
+.caseStudyArrow {
+  width: 12px;
+  height: 12px;
 }

@@ -802,6 +802,23 @@
   gap: 4px;
 }
 
+.menuHoverImg {
+  position: absolute;
+  right: 60px;
+  width: clamp(180px, 20vw, 320px);
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  animation: menuImgFadeIn 0.3s ease forwards;
+}
+
+@keyframes menuImgFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .menuLink {
   font-size: clamp(52px, 7.5vw, 108px);
   font-weight: 400;
