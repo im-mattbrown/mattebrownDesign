@@ -1,4 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useRouter } from 'next/router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import s from '../styles/Home.module.css'
@@ -40,20 +41,30 @@ function drawCover(video, canvas) {
   ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh)
 }
 
-function ArrowBtn({ label, white, href }) {
-  const cls = `${s.btn} ${white ? s.btnWhite : ''}`
+function ArrowBtn({ label, white, dark, href, to }) {
+  const router = useRouter()
+  const cls = `${s.btn} ${white ? s.btnWhite : ''} ${dark ? s.btnDark : ''}`
+  const arrowCls = dark ? s.btnDarkArrow : s.btnArrow
+  if (to) {
+    return (
+      <button className={cls} onClick={() => router.push(to)}>
+        {label}
+        <img src={ARROW} alt="" className={arrowCls} />
+      </button>
+    )
+  }
   if (href) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={`${cls} ${s.btnLink}`}>
         {label}
-        <img src={ARROW} alt="" className={s.btnArrow} />
+        <img src={ARROW} alt="" className={arrowCls} />
       </a>
     )
   }
   return (
     <button className={cls}>
       {label}
-      <img src={ARROW} alt="" className={s.btnArrow} />
+      <img src={ARROW} alt="" className={arrowCls} />
     </button>
   )
 }
@@ -436,7 +447,10 @@ export default function Home({ dark }) {
           <p className={s.projectDesc}>
             DIGITAL SHOPPING EXPERIENCES HAVE SEVERAL ELEMENTS MISSING THAT CANNOT BE REPLICATED FROM A TRADITIONAL IN STORE CLOTHING PROVIDER. WITH <strong>THAT&rsquo;S ON ME,</strong> USERS CAN VIRTUALLY TRY ON CLOTHES BY USING GOOGLE&rsquo;S LATEST IMAGE GENERATION MODEL NANO BANANA TO MERGE PHOTOS OF THEMSELVES WITH THE ITEM OF CLOTHING THEY ARE LOOKING TO PURCHASE. THIS GIVES THE USER AN IDEA OF WHAT THEY WOULD LOOK LIKE IN THE CLOTHES BEFORE THEY PURCHASE. LEADING TO A BETTER ONLINE SHOPPING EXPERIENCE FOR CUSTOMERS AND LESS CARTS GOING EMPTY FOR YOUR BUSINESS.
           </p>
-          <ArrowBtn label="VISIT SITE" href="https://thatson.me" />
+          <div className={s.btnRow}>
+            <ArrowBtn label="VISIT SITE" href="https://thatson.me" />
+            <ArrowBtn label="CASE STUDY" dark to="/work/thatsonme" />
+          </div>
         </div>
       </div>
 
@@ -464,7 +478,10 @@ export default function Home({ dark }) {
           <p className={s.projectDesc}>
             MOST MODERN SOFTWARE APPLICATIONS HAVE A SET OF KEYBOARD SHORTCUTS THAT ALLOW A USER TO STREAMLINE THEIR WORKFLOWS AND INCREASE PRODUCTIVITY. THE PROBLEM IS THAT TRYING TO LEARN THESE KEY BINDINGS CAN BE A CHALLENGE, ONE THAT MANY USERS NEVER ATTEMPT TO TAKE ON. WITH SHRTCTS.IO, USERS OF APPS SUCH AS FIGMA, MIRO AND VSCODE CAN TRAIN TO BECOME POWER USERS THROUGH FUN CHALLENGES, PROGRESSING ACROSS LEVELS TOWARDS KEYBOARD SHORTCUT MASTERY.
           </p>
-          <ArrowBtn label="VISIT SITE" href="https://shrtcts.io" />
+          <div className={s.btnRow}>
+            <ArrowBtn label="VISIT SITE" href="https://shrtcts.io" />
+            <ArrowBtn label="CASE STUDY" dark to="/work/shrtcts" />
+          </div>
         </div>
       </div>
       <hr className={s.divider} />
@@ -490,7 +507,10 @@ export default function Home({ dark }) {
           <p className={s.projectDesc}>
             I GOT BORED OF THE INTERNET ONE DAY AND DECIDED TO TRY TO CHANGE THAT. IN THE PAST I USED THE INTERNET TO DISCOVER NEW AND INTERESTING THINGS ON A REGULAR BASIS, THINGS THAT CHANGED THE TRAJECTORY OF MY LIFE. TODAY I BRAINROT ON TIKTOK OR BUILD WITH AI. WITH CURL, A WEB APP THAT DRIVES ONLINE DISCOVERY, USERS CAN "CURL" ONE OF OVER 3000 CURATED WEBSITES BASED ON THEIR SELECTED TOPICS, SUBTOPICS AND NICHE INTERESTS. MY GOAL WITH CURL IS TO DRIVE THE DISCOVERY THAT MADE ME LOVE THE INTERNET WHEN I WAS YOUNGER.
           </p>
-          <ArrowBtn label="VISIT SITE" href="https://www.curl.fyi" />
+          <div className={s.btnRow}>
+            <ArrowBtn label="VISIT SITE" href="https://www.curl.fyi" />
+            <ArrowBtn label="CASE STUDY" dark to="/work/curl" />
+          </div>
         </div>
       </div>
 
@@ -512,7 +532,10 @@ export default function Home({ dark }) {
           <p className={s.projectDesc}>
             BEING A SOLO BUILDER OR WORSE YET, A &ldquo;VIBE CODER&rdquo; IS STILL SOMEWHAT OF A WILD WEST. MANY TOOLS EXIST TO ASSIST BUILDERS WHO WANT TO BUILD SOFTWARE OR &ldquo;SELFWARE&rdquo; TO SOLVE THEIR OWN PROBLEMS. PLATFORMS SUCH AS LOVEABLE, BOLT AND REPLIT PROMISE TO CREATE AN APP FOR YOU WITH JUST A PROMPT, NO KNOWLEDGE REQUIRED. WHILE THESE ARE GOOD FOR A COMPLETE BEGINNER, THERE IS A GAP IN THE MARKET FOR SOLO BUILDERS THAT DO NOT NEED THEIR HAND HELD THROUGH THE PROCESS. SELFWARE STUDIO ALLOWS USERS WITH PRODUCT DESIGN OR CODING KNOWLEDGE TO STEP THROUGH A TRACK PROVEN UX RESEARCH PROCESS BEFORE THEY EVEN BEGIN TO BUILD.
           </p>
-          <ArrowBtn label="VISIT SITE" href="https://curl.fyi" />
+          <div className={s.btnRow}>
+            <ArrowBtn label="VISIT SITE" href="https://curl.fyi" />
+            <ArrowBtn label="CASE STUDY" dark to="/work/selfwarestudio" />
+          </div>
         </div>
       </div>
 

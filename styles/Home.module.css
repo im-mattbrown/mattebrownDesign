@@ -39,8 +39,34 @@
   border-radius: 12px;
 }
 
+.btnDark {
+  background: #0e0e0e;
+  border-color: #0e0e0e;
+  color: #fff;
+}
+
+[data-theme="dark"] .btnDark {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #0e0e0e;
+}
+
+.btnDarkArrow {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="dark"] .btnDarkArrow {
+  filter: brightness(0);
+}
+
 .btnLink {
   align-self: flex-start;
+}
+
+.btnRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btnArrow {
