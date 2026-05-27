@@ -791,6 +791,7 @@
   background: #fff;
   transform: translateY(-100%);
   will-change: transform;
+  margin-right: -1px;
 }
 
 [data-theme="dark"] .menuStripe {
