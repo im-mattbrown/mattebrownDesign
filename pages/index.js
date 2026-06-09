@@ -435,7 +435,7 @@ export default function Home({ dark }) {
           </div>
           <video
             ref={tomVideoRef}
-            src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1777746976/thatsOnMeVidPortfolio_ymlawk.mp4"
+            src="https://matte-cdn.b-cdn.net/thatsOnMeVidPortfolio.mp4"
             className={s.projectVideo}
             muted
             loop
@@ -466,7 +466,7 @@ export default function Home({ dark }) {
           </div>
           <video
             ref={shrtctsVideoRef}
-            src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1772238552/TOM_Final_LinkedIn_1_imxbai.mp4"
+            src="https://matte-cdn.b-cdn.net/ShrtctsPortfolio.mp4"
             className={s.projectVideo}
             muted
             loop
@@ -495,7 +495,7 @@ export default function Home({ dark }) {
           </div>
           <video
             ref={curlVideoRef}
-            src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1777747716/curlPortfolioFinal_rylwzw.mp4"
+            src="https://matte-cdn.b-cdn.net/curlPortfolioFinal.mp4"
             className={s.projectVideo}
             muted
             loop
@@ -570,7 +570,7 @@ export default function Home({ dark }) {
       {/* COLLAGE VIDEO */}
       <video
         ref={collageVideoRef}
-        src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778028681/collagePortfolio_sos2wh.mp4"
+        src="https://matte-cdn.b-cdn.net/collagePortfolio.mp4"
         className={s.collageVideo}
         muted
         loop
@@ -616,7 +616,7 @@ export default function Home({ dark }) {
           <p>WITH YOUR BUSINESS OBJECTIVES. PARTNER WITH</p>
           <p>ME TO SET YOUR BRAND APART.</p>
         </div>
-        <ArrowBtn label="MY WORK" white />
+        <ArrowBtn label="MY WORK" white to="/work" />
       </section>
 
       {/* FOOTER */}

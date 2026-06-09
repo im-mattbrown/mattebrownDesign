@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://res.cloudinary.com/dzghwkkzb/video/upload/v1778264329/THATSONMEDESIGN_ddcbvt.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/THATSONMEDESIGN.mp4',
   num: '01',
   title: "THAT'S ON ME",
   type: 'WEB / MOBILE APP',

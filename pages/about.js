@@ -276,7 +276,9 @@ export default function About({ dark }) {
           <p>WITH YOUR BUSINESS OBJECTIVES. PARTNER WITH</p>
           <p>ME TO SET YOUR BRAND APART.</p>
         </div>
+        <a href="/work">
         <ArrowBtn label="MY WORK" white />
+        </a>
       </section>
 
       {/* FOOTER */}

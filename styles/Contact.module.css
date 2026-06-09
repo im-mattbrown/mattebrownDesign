@@ -1,0 +1,418 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  transition: background 0.25s ease;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+  padding: 40px 30px 60px;
+}
+
+/* ─── Terminal window ─────────────────────────────── */
+.terminal {
+  width: min(720px, 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+}
+
+.titleBar {
+  background: #282828;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dotRed, .dotYellow, .dotGreen {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.dotRed    { background: #ff5f57; }
+.dotYellow { background: #ffbd2e; }
+.dotGreen  { background: #28c840; }
+
+.titleText {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  color: #999;
+  flex: 1;
+  text-align: center;
+}
+
+/* ─── Tab bar ─────────────────────────────────────── */
+.tabBar {
+  background: #1e1e1e;
+  display: flex;
+  align-items: stretch;
+  padding: 0 8px;
+  gap: 0;
+}
+
+.tab {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #666;
+  padding: 5px 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  border-right: 1px solid #2a2a2a;
+  cursor: default;
+}
+
+.tabActive {
+  background: #141414;
+  color: #bbb;
+}
+
+.tabAdd {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  color: #555;
+  padding: 4px 12px;
+  cursor: default;
+  margin-left: auto;
+}
+
+/* ─── Terminal body ───────────────────────────────── */
+.body {
+  background: #141414;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px 14px;
+  height: 520px;
+  cursor: text;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.messages::-webkit-scrollbar       { width: 4px; }
+.messages::-webkit-scrollbar-track { background: transparent; }
+.messages::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+/* User message: prompt prefix + their text */
+.userLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* Assistant message: plain terminal output */
+.assistantLine {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #ffffff;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.prompt {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  color: #ffffff;
+  white-space: pre;
+  flex-shrink: 0;
+}
+
+.text {
+  word-break: break-word;
+}
+
+/* ─── Input row ───────────────────────────────────── */
+.inputLine {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #252525;
+  padding-top: 12px;
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  caret-color: #ffffff;
+  line-height: 1.6;
+}
+
+.input:disabled {
+  opacity: 0.5;
+}
+
+.rateLimitMsg {
+  color: #ff6b6b;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+/* ─── Typing cursor ───────────────────────────────── */
+.blink {
+  color: #ffffff;
+  animation: blink 1s step-end infinite;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── Status bar ──────────────────────────────────── */
+.statusBar {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #484848;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.shareBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #666;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shareBtn:hover {
+  color: #999;
+}
+
+/* ─── Share modal ─────────────────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  width: min(400px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modalTitle {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.modalSub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.modalInput {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.modalInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.modalInput:focus {
+  border-color: #4ec9b0;
+}
+
+.modalError {
+  font-size: 13px;
+  color: #f48771;
+}
+
+.modalSubmit {
+  margin-top: 4px;
+  padding: 10px 20px;
+  background: var(--text-primary);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modalSubmit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.modalClose {
+  align-self: flex-start;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* ─── Dark mode — invert terminal to light ────────── */
+[data-theme="dark"] .terminal {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .titleBar {
+  background: #d9d9d9;
+}
+
+[data-theme="dark"] .titleText {
+  color: #555;
+}
+
+[data-theme="dark"] .tabBar {
+  background: #e8e8e8;
+}
+
+[data-theme="dark"] .tab {
+  color: #aaa;
+  border-right-color: #d0d0d0;
+}
+
+[data-theme="dark"] .tabActive {
+  background: #f0f0f0;
+  color: #444;
+}
+
+[data-theme="dark"] .tabAdd {
+  color: #bbb;
+}
+
+[data-theme="dark"] .body {
+  background: #f0f0f0;
+}
+
+[data-theme="dark"] .messages {
+  scrollbar-color: #ccc transparent;
+}
+
+[data-theme="dark"] .messages::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+
+[data-theme="dark"] .userLine {
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] .assistantLine {
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] .prompt {
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] .inputLine {
+  border-top-color: #ddd;
+}
+
+[data-theme="dark"] .input {
+  color: #1a1a1a;
+  caret-color: #1a1a1a;
+}
+
+[data-theme="dark"] .blink {
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] .rateLimitMsg {
+  color: #c0392b;
+}
+
+[data-theme="dark"] .statusBar {
+  color: #aaa;
+}
+
+[data-theme="dark"] .shareBtn {
+  color: #aaa;
+}
+
+[data-theme="dark"] .shareBtn:hover {
+  color: #555;
+}
+
+/* ─── Mobile ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .main {
+    padding: 24px 16px 40px;
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+
+  .body {
+    height: auto;
+    min-height: 460px;
+    max-height: calc(100vh - 180px);
+  }
+}

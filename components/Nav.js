@@ -103,7 +103,7 @@ export default function Nav({ dark, onToggleDark, navColor }) {
 
   function handleNavClick(e, href) {
     e.preventDefault()
-    router.push(href)
+    router.push(href, undefined, { scroll: false })
     setMenuOpen(false)
   }
 

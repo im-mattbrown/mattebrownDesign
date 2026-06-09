@@ -5,8 +5,24 @@ import cs from '../styles/CaseStudy.module.css'
 
 const ARROW = '/images/arrowUpRight.svg'
 
+function StoryBlock({ block }) {
+  if (block.type === 'sectionTitle') return (
+    <h2 className={cs.storySectionTitle}>{block.text}</h2>
+  )
+  if (block.type === 'fullImage') return (
+    <img src={block.src} alt={block.alt || ''} className={cs.storyFullImg} />
+  )
+  if (block.type === 'text') return (
+    <p className={cs.storyText}>{block.text}</p>
+  )
+  if (block.type === 'fullVideo') return (
+    <video src={block.src} className={cs.storyFullImg} autoPlay loop muted playsInline />
+  )
+  return null
+}
+
 export default function CaseStudyPage({ config }) {
-  const { heroVideo, num, title, type, year, role, tools, description, problem, solution, outcome } = config
+  const { heroVideo, num, title, type, year, role, tools, description, problem, solution, outcome, body } = config
   const router = useRouter()
   const heroVideoRef = useRef(null)
 
@@ -92,7 +108,9 @@ export default function CaseStudyPage({ config }) {
             <p className={cs.sectionText}>{solution}</p>
           </div>
 
-          <div className={cs.imgPlaceholder} />
+          {body && body.length > 0 &&
+            body.map((block, i) => <StoryBlock key={i} block={block} />)
+          }
 
           <div className={cs.section}>
             <p className={cs.sectionLabel}>[ OUTCOME ]</p>
@@ -122,3 +140,4 @@ export default function CaseStudyPage({ config }) {
     </>
   )
 }
+

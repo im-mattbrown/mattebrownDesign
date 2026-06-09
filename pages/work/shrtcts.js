@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://res.cloudinary.com/dzghwkkzb/video/upload/v1778264701/shrtctsDesign_qr421p.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/shrtctsDesign.mp4',
   num: '02',
   title: 'SHRTCTS',
   type: 'WEB APP',
