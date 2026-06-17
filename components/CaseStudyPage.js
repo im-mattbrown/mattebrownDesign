@@ -22,7 +22,7 @@ function StoryBlock({ block }) {
 }
 
 export default function CaseStudyPage({ config }) {
-  const { heroVideo, num, title, type, year, role, tools, description, problem, solution, outcome, body } = config
+  const { heroVideo, num, title, type, year, role, tools, description, problem, solution, outcome, body, url } = config
   const router = useRouter()
   const heroVideoRef = useRef(null)
 
@@ -96,6 +96,15 @@ export default function CaseStudyPage({ config }) {
               <p className={cs.detailLabel}>TYPE</p>
               <p className={cs.detailValue}>{type}</p>
             </div>
+            {url && (
+              <div className={cs.detailCol}>
+                <p className={cs.detailLabel}>WEBSITE</p>
+                <a href={url} target="_blank" rel="noopener noreferrer" className={cs.visitBtn}>
+                  VISIT SITE
+                  <img src={ARROW} alt="" className={cs.visitArrow} />
+                </a>
+              </div>
+            )}
           </div>
 
           <div className={cs.section}>

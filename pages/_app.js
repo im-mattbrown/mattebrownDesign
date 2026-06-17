@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
     return () => { gsap.ticker.remove(raf); lenis.destroy() }
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.scrollTop = 0
     document.body.scrollTop = 0
     const l = lenisRef.current

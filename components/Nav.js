@@ -98,6 +98,7 @@ export default function Nav({ dark, onToggleDark, navColor }) {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
+    if (!menuOpen) setHoveredImg(null)
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 

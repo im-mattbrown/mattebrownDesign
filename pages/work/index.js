@@ -52,7 +52,7 @@ const PROJECTS = [
     type: 'WEB APP',
     year: '[2026]',
     slug: 'selfwarestudio',
-    cells: [null, 'desc'],
+    cells: [{ logo: '/images/logos/selfstudioLogo.svg' }, { comingSoon: true }, 'desc'],
     rowClass: 'row4',
     info: {
       description: 'IF REPLIT AND LOVABLE ARE BIKES WITH TRAINING WHEELS FOR APP BUILDERS, SELFWARE STUDIO IS A BIKE KITCHEN WHERE YOU LEARN TO BUILD THE BIKE BEFORE YOU RIDE. EMPOWERING BUILDERS TO MAKE THEIR OWN SOFTWARE IS THE FUTURE.',
@@ -131,11 +131,19 @@ export default function Work({ dark }) {
     // Seek the overlay video to the same frame so it continues seamlessly
     vid.addEventListener('loadedmetadata', () => { vid.currentTime = capturedTime }, { once: true })
 
+    const isMobile = window.innerWidth <= 768
+    const targetTop = isMobile ? 120 : 0
+    const targetHeight = isMobile ? window.innerWidth / 1.97 : window.innerHeight
+
+    if (isMobile) {
+      vid.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;'
+    }
+
     gsap.to(overlay, {
-      top: 0,
+      top: targetTop,
       left: 0,
       width: window.innerWidth,
-      height: window.innerHeight,
+      height: targetHeight,
       borderRadius: 0,
       duration: 0.75,
       ease: 'power3.inOut',
@@ -181,6 +189,11 @@ export default function Work({ dark }) {
                       playsInline
                       {...(cell.hero ? { 'data-project-video': project.slug } : {})}
                     />
+                  </div>
+                )
+                if (cell?.comingSoon) return (
+                  <div key={j} className={`${w.placeholder} ${w.comingSoonCell}`}>
+                    <span className={w.comingSoonLabel}>Coming Soon</span>
                   </div>
                 )
                 if (cell?.logo) return (

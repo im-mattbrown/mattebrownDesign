@@ -9,6 +9,7 @@ const config = {
   role: 'PRODUCT DESIGNER / DEVELOPER',
   tools: ['FIGMA', 'CLAUDE', 'CLAUDE CODE', 'NEXT.JS'],
   description: 'CURL IS A SITE FOR DISCOVERING INTERESTING THINGS ONLINE. LARGE PLATFORMS HAVE BECOME THE GATEKEEPERS OF ONLINE CONTENT BUT IT DOES NOT HAVE TO BE LIKE THAT. WITH OVER 3000 CURATED SITES ON CURL, USERS CAN FIND NEW AND INTERESTING WEBSITES AND WEB APPLICATIONS BASED ON THEIR INTERESTS.',
+  url: 'https://www.curl.fyi',
   problem: "The discovery layer of the internet was effectively killed when algorithmic social feeds replaced open browsing. Curl rebuilds that layer for people who want to explore the web, not just consume it. CURL is for the person who just wants to find something interesting they didn't know existed.",
   solution: "Curl is a human-curated web discovery platform that serves you one interesting website at a time with no biased algorithm, no feed and no social graph. You press curl, you go somewhere new. The sites are hand-picked across dozens of topics and niches, skewing toward the obscure, the weird, and the genuinely interesting. You tell Curl what you're into, and it handles the rest, surfacing corners of the internet you never would have found on your own, one curl at a time.",
   outcome: [

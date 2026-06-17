@@ -1027,4 +1027,8 @@
   .footerNav {
     gap: 12px;
   }
+
+  .aiText p {
+    white-space: normal;
+  }
 }

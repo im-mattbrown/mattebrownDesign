@@ -87,7 +87,7 @@
 /* ─── Details row ────────────────────────────────── */
 .details {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 40px;
   padding-bottom: 80px;
   border-bottom: 1px solid var(--border);
@@ -215,8 +215,103 @@
 
 .backBtn:hover { opacity: 0.6; }
 
+.visitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--bg);
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.visitBtn:hover { opacity: 0.7; }
+
+.visitArrow {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="dark"] .visitArrow {
+  filter: brightness(0);
+}
+
 .backArrow {
   width: 14px;
   height: 14px;
   transform: rotate(180deg);
+}
+
+/* ─── Mobile ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    background: var(--bg);
+    transition: background 0.25s ease;
+  }
+
+  .heroVideo {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    margin-top: 120px;
+  }
+
+  .heroMeta {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    padding: 24px 20px 32px;
+    background: var(--bg);
+    transition: background 0.25s ease;
+  }
+
+  .heroNum {
+    color: var(--text-secondary);
+  }
+
+  .heroTitle {
+    color: var(--text-primary);
+  }
+
+  .heroType {
+    color: var(--text-secondary);
+  }
+
+  .content {
+    padding: 48px 20px 80px;
+    gap: 48px;
+  }
+
+  .overview {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .storyFullImg {
+    height: auto;
+    border-radius: 0;
+  }
 }

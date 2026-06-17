@@ -99,9 +99,9 @@
   grid-template-columns: 400px 1fr 2.1fr;
 }
 
-/* Row 4 — SELFWARE: wide | narrow */
+/* Row 4 — SELFWARE: logo | gif | desc */
 .row4 {
-  grid-template-columns: 2.5fr 1fr;
+  grid-template-columns: 1fr 1.5fr 2fr;
 }
 
 /* ─── Placeholder ───────────────────────────────── */
@@ -150,6 +150,24 @@
   width: 50%;
   height: 50%;
   object-fit: contain;
+}
+
+/* ─── Coming Soon Cell ──────────────────────────── */
+.comingSoonCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXFmOXNmcjk4MmdvcTY5MjkyMWJmYjByYzM5MXF3d2U4eHdqb290NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SVnVbQAMtTXJm/giphy.gif');
+  background-size: cover;
+  background-position: center;
+}
+
+.comingSoonLabel {
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
 }
 
 /* ─── Description Card ──────────────────────────── */
@@ -241,4 +259,25 @@
 .caseStudyArrow {
   width: 12px;
   height: 12px;
+}
+
+/* ─── Mobile ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .bentoImages,
+  .row1,
+  .row2,
+  .row3,
+  .row4 {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .placeholder {
+    height: 280px;
+  }
+
+  .descCard {
+    height: auto;
+    min-height: 280px;
+  }
 }

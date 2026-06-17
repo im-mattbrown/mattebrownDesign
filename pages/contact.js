@@ -55,12 +55,6 @@ export default function Contact() {
     setUsed(loadRateLimit())
   }, [])
 
-  const mountedRef = useRef(false)
-  useEffect(() => {
-    if (!mountedRef.current) { mountedRef.current = true; return }
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, loading])
-
   useEffect(() => {
     if (showModal) nameRef.current?.focus()
   }, [showModal])
