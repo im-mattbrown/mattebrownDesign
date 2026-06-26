@@ -20,10 +20,10 @@ const ALL_HREFS = ['/', ...ALL_LINKS.map(l => l.href)]
 
 function StartBtn({ color, arrowStyle }) {
   return (
-    <button className={s.btn} style={color ? { color, borderColor: color } : {}}>
+    <Link href="/contact" className={s.btn} style={color ? { color, borderColor: color } : {}}>
       START A PROJECT
       <img src={ARROW} alt="" className={s.btnArrow} style={arrowStyle} />
-    </button>
+    </Link>
   )
 }
 

@@ -13,9 +13,9 @@ const config = {
   problem: "The discovery layer of the internet was effectively killed when algorithmic social feeds replaced open browsing. Curl rebuilds that layer for people who want to explore the web, not just consume it. CURL is for the person who just wants to find something interesting they didn't know existed.",
   solution: "Curl is a human-curated web discovery platform that serves you one interesting website at a time with no biased algorithm, no feed and no social graph. You press curl, you go somewhere new. The sites are hand-picked across dozens of topics and niches, skewing toward the obscure, the weird, and the genuinely interesting. You tell Curl what you're into, and it handles the rest, surfacing corners of the internet you never would have found on your own, one curl at a time.",
   outcome: [
-    'ADD OUTCOME POINT HERE.',
-    'ADD OUTCOME POINT HERE.',
-    'ADD OUTCOME POINT HERE.',
+    'I REALLY PUSHED FOR A BACK AND FORTH CONNECTION TO FIGMA MCP. FEEDING IT WIREFRAMES AND A PROMPT FOR THE UI, THEN REFINING THE UI IN FIGMA AND USING CLUADE TO UPDATE THE FRONTEND CODE.',
+    'CLAUDE IS NOT GREAT AT GETTING THINGS PIXEL PERFECT THE FIRST TIME AROUND AND I HAD TO BE SURE TO REVIEW EACH CHANGE CAREFULLY FOR THINGS LIKE SPACING AND OTHER STYLING.',
+    'THE CRUX OF THIS APP IS TO HAVE INTERESTING AND UNIQUE WEBSITES. THIS REQUIRED HELP FROM CLAUDE TO SEED THE DATABASE AND A LOT OF PRUNING, EDITING AND CURATING OF THE SEED DATA.',
   ],
   body: [
     {
