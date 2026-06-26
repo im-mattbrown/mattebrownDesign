@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Head from 'next/head'
 import s from '../styles/Home.module.css'
 
 const ARROW = '/images/arrowUpRight.svg'
@@ -338,7 +339,9 @@ export default function Home({ dark }) {
   }, [dark])
 
   return (
-    <div className={s.page}>
+    <>
+      <Head><title>MatteBrown Design</title></Head>
+      <div className={s.page}>
 
       {/* HERO */}
       <section className={s.hero}>
@@ -670,5 +673,6 @@ export default function Home({ dark }) {
       </footer>
 
     </div>
+    </>
   )
 }

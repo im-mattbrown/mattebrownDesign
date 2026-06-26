@@ -103,7 +103,7 @@ export default function Playground() {
   return (
     <>
       <Head>
-        <title>Playground — Matte Brown</title>
+        <title>Playground — MatteBrown Design</title>
       </Head>
       <div className={s.wrap}>
         <div className={s.filters}>

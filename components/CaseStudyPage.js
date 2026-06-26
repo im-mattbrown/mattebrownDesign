@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import s from '../styles/Home.module.css'
 import cs from '../styles/CaseStudy.module.css'
 
@@ -54,6 +55,7 @@ export default function CaseStudyPage({ config }) {
 
   return (
     <>
+      <Head><title>{title} — MatteBrown Design</title></Head>
       <section className={cs.hero}>
         <video
           ref={heroVideoRef}

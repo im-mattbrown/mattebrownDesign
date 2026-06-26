@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Head from 'next/head'
 import s from '../styles/Home.module.css'
 import a from '../styles/About.module.css'
 
@@ -192,6 +193,7 @@ export default function About({ dark }) {
 
   return (
     <>
+      <Head><title>About — MatteBrown Design</title></Head>
       {/* HERO — outside .page so overflow-x:hidden on .page doesn't clip the -100px margin */}
       <section className={a.hero}>
         <img

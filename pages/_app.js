@@ -4,6 +4,7 @@ import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Head from 'next/head'
 import '../styles/globals.css'
 import Nav from '../components/Nav'
 
@@ -43,6 +44,9 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <title>MatteBrown Design</title>
+      </Head>
       <Nav dark={dark} onToggleDark={() => setDark(d => !d)} navColor={navColor} />
       <Component {...pageProps} dark={dark} />
     </>

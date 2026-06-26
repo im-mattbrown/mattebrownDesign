@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { gsap } from 'gsap'
+import Head from 'next/head'
 import s from '../../styles/Home.module.css'
 import w from '../../styles/Work.module.css'
 
@@ -152,7 +153,9 @@ export default function Work({ dark }) {
   }
 
   return (
-    <div className={s.page}>
+    <>
+      <Head><title>Work — MatteBrown Design</title></Head>
+      <div className={s.page}>
 
       {/* PAGE HEADER */}
       <section className={w.header}>
@@ -215,5 +218,6 @@ export default function Work({ dark }) {
       </div>
 
     </div>
+    </>
   )
 }

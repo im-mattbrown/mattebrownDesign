@@ -144,7 +144,7 @@ export default function Contact() {
   return (
     <>
       <Head>
-        <title>Contact — Matte Brown</title>
+        <title>Contact — MatteBrown Design</title>
       </Head>
       <div className={s.page}>
         <main className={s.main}>
