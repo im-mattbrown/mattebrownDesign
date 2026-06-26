@@ -392,7 +392,7 @@ export default function Home({ dark }) {
       {/* ABOUT HEADING */}
       <section className={s.aboutHeading}>
         <h2 data-anim="fade-up" className={s.aboutTitle}>
-          Designer who codes.<br />Developer THAT cares.
+          Designer who codes.<br />Developer that cares.
         </h2>
         <p data-anim="fade-r" className={s.whoAmI}>[ WHO AM I? ]</p>
       </section>
