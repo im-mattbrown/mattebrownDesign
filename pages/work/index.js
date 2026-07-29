@@ -53,7 +53,7 @@ const PROJECTS = [
     type: 'WEB APP',
     year: '[2026]',
     slug: 'selfwarestudio',
-    cells: [{ logo: '/images/logos/selfstudioLogo.svg' }, { comingSoon: true }, 'desc'],
+    cells: [{ logo: '/images/logos/selfStudioLogo.svg' }, { comingSoon: true }, 'desc'],
     rowClass: 'row4',
     info: {
       description: 'IF REPLIT AND LOVABLE ARE BIKES WITH TRAINING WHEELS FOR APP BUILDERS, SELFWARE STUDIO IS A BIKE KITCHEN WHERE YOU LEARN TO BUILD THE BIKE BEFORE YOU RIDE. EMPOWERING BUILDERS TO MAKE THEIR OWN SOFTWARE IS THE FUTURE.',
