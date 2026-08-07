@@ -29,7 +29,7 @@ const config = {
     },
     {
       type: 'sectionTitle',
-      text: 'Then came the prompt and Figma MCP connection to start the design.',
+      text: 'Then came the prompt and Figma MCP connection to start the design. This time around I fed the wireframes to Claude and had Claude turn that into design files.',
     },
     {
       type: 'fullVideo',
@@ -37,7 +37,7 @@ const config = {
     },
     {
       type: 'sectionTitle',
-      text: 'Followed by refining the UI directly in Figma.',
+      text: 'Followed by refining the UI directly in Figma. I needed to fix several issues around spacing consistency as well as color choices. Claude seems to emphasize content that leads to clutter.',
     },
     {
       type: 'fullVideo',
@@ -45,11 +45,19 @@ const config = {
     },
     {
       type: 'sectionTitle',
-      text: 'Next step is to build out the websites to seed the database by prompting Claude and hand curating the results.',
+      text: 'Next step is to build out the websites to seed the database by prompting Claude and hand curating the results. This is by far the most labor intensive part.',
     },
     {
       type: 'fullVideo',
       src: 'https://matte-cdn.b-cdn.net/curlClaudeChat.mp4',
+    },
+    {
+      type: 'sectionTitle',
+      text: 'To help speed up the trimming of broken links or uninteresting sites, I created an admin feature to directly alter the database tables from the app UI. This way I can update broken links or delete sites as I explore CURL.',
+    },
+    {
+      type: 'fullVideo',
+      src: 'https://matte-cdn.b-cdn.net/curl02.mp4',
     },
   ],
 }

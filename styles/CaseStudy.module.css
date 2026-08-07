@@ -27,6 +27,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  /* Blend the text with the video behind it so each part stays legible:
+     over light frames the white text renders dark, over dark frames it
+     stays light — adapting per-pixel to whatever is behind it. */
+  mix-blend-mode: difference;
 }
 
 .heroNum {

@@ -28,7 +28,7 @@ const config = {
     },
     {
       type: 'sectionTitle',
-      text: 'I forgot to record my prompting of Claude (here is a recording of the project overview). I connected Figma MCP and prompted my way through the build stage.',
+      text: 'I forgot to record my prompting of Claude (here is a recording of the project overview). I connected Figma MCP to get a connection between Claude code and the design files and prompted my way through the build stage.',
     },
     {
       type: 'fullVideo',
@@ -36,7 +36,7 @@ const config = {
     },
     {
       type: 'sectionTitle',
-      text: 'Halfway through I needed to completely overhaul the structure to support subdomains for each of the different applications. Working with Claude to build out dynamic app routing so that I could have three different apps in one.',
+      text: 'Halfway through I needed to completely overhaul the structure to support subdomains for each of the different applications. Working with Claude to build out dynamic app routing so that I could have three different apps in one with shared login information.',
     },
     {
       type: 'fullVideo',

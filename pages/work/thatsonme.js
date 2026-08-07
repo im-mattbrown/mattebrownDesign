@@ -15,7 +15,7 @@ const config = {
   outcome: [
     "THIS IS MY FIRST FULL STACK WEB APPLICATION BUILT WITH CLAUDE CODE, I NEED TO REFINE MY PROCESS.",
     "CLAUDE HAS ITS LIMITATIONS AS I DISCOVERED BY THE QUALITY OF THE FRONTEND CODE AND HOW MUCH I NEEDED TO REFINE.",
-    "WORKING WITH MODERN MODELS SUCH AS GOOGLE'S IMAGE GENERATION API IS SIMPLER THAN EXPECTED AND SHOULD BE A PART OF MY PROJECTS.",
+    "WORKING WITH MODERN MODELS SUCH AS GOOGLE'S IMAGE GENERATION API IS SIMPLER THAN EXPECTED AND SHOULD BE A PART OF MY PROJECTS WHEN NEEDED.",
   ],
   body: [
     {
@@ -52,11 +52,19 @@ const config = {
     },
     {
       type: 'sectionTitle',
-      text: 'And finally before launch, I made the app responsive for mobile viewports and made a demo video.',
+      text: 'And finally before launch, I made the app responsive for mobile viewports and made a demo video to share with potential users.',
     },
     {
       type: 'fullVideo',
       src: 'https://matte-cdn.b-cdn.net/TOM_Mobile.mp4',
+    },
+    {
+      type: 'sectionTitle',
+      text: 'I had a couple people help out with usability testing and QA. Through this I identified a few common sticking points as well as some issues with accessibility concerns around color choices and contrast. So I reworked those in design first, then code after that.',
+    },
+    {
+      type: 'fullVideo',
+      src: 'https://matte-cdn.b-cdn.net/tom02.mp4',
     },
   ],
 }

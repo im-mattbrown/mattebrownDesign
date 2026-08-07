@@ -15,6 +15,9 @@ export default function App({ Component, pageProps }) {
   const router = useRouter()
 
   const navColor = ['/about', '/playground'].includes(router.pathname) ? '#d9d9d9' : undefined
+  // These case-study pages have full-bleed video heroes behind the nav, so the
+  // nav blends with the video (dark over light frames, light over dark).
+  const navBlend = ['/work/contexto', '/work/curated', '/work/tidal'].includes(router.pathname)
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light'
@@ -47,7 +50,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>MatteBrown Design</title>
       </Head>
-      <Nav dark={dark} onToggleDark={() => setDark(d => !d)} navColor={navColor} />
+      <Nav dark={dark} onToggleDark={() => setDark(d => !d)} navColor={navColor} navBlend={navBlend} />
       <Component {...pageProps} dark={dark} />
     </>
   )

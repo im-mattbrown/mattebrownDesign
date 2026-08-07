@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { gsap } from 'gsap'
 import Head from 'next/head'
@@ -60,6 +61,46 @@ const PROJECTS = [
       tools: ['FIGMA', 'FIGMA MCP', 'CLAUDE CODE', 'NEXT.JS'],
     },
   },
+  {
+    num: '01',
+    name: 'CONTEXTO',
+    type: 'MOBILE APP',
+    year: '[2025]',
+    slug: 'contexto',
+    cells: [{ video: 'https://matte-cdn.b-cdn.net/contextoMain.mp4', hero: true }, 'desc', {logo: 'https://matte-cdn.b-cdn.net/AVATAR.png'}],
+    rowClass: 'row1',
+    info: {
+      description: 'CONTEXTO IS AN AI DRIVEN LANGUAGE LEARNING APPLICATION FOR INTERMEDIATE TO ADVANCED LEVEL LANGUAGE LEARNERS. USERS ARE TASKED WITH 5 DIFFERENT LANGUAGE EXCERCISES PER DAY THAT CLOSELY MIRROR IMMERSIVE EXPERIENCES TO ACCELERATE ACHIEVING FLUENCY.',
+      tools: ['FIGMA', 'FIGJAM'],
+    },
+  },
+  {
+    
+    num: '02',
+    name: 'CURATED',
+    type: 'WEB APP',
+    year: '[2025]',
+    slug: 'curated',
+    cells: ['desc', { video: 'https://matte-cdn.b-cdn.net/curatedMain.mp4', hero: true }, { logo: 'https://matte-cdn.b-cdn.net/contextoLogoHD.png', spin: true }],
+    rowClass: 'row2',
+    info: {
+      description: 'THE RIGHT PLAYLIST CAN COMPLETELY CHANGE AN EXPERIENCE, MAKING A TIME AND PLACE MORE MEMORABLE. TODAY WE INCREASINGLY RELY ON ALGORITHMS TO DRIVE MUSIC DISCOVERY AND INFORM OUR MUSIC CHOICES. CURATED TAKES THE POWER BACK TO THE PEOPLE THAT DEFINE TASTE BY PROVIDING A MARKETPLACE OF WELL CRAFTED MUSIC PLAYLISTS AND MUSIC BASED STORIES.',
+      tools: ['FIGMA'],
+    },
+  },
+  {
+    num: '03',
+    name: 'TIDAL MUSIC - COMMUNITY FEATURE',
+    type: 'FEATURE ADDITION',
+    year: '[2025]',
+    slug: 'tidal',
+    cells: [{logo: 'https://matte-cdn.b-cdn.net/USERTIDAL.jpg'}, 'desc',{ video: 'https://matte-cdn.b-cdn.net/TidalMain.mp4', hero: true } ],
+    rowClass: 'row3',
+    info: {
+      description: 'MODERN MUSIC STREAMING PLATFORMS ALL SEEM TO IGNORE THE MOST IMPORTANT PART OF EXPERIENCING MUSIC - SHARING AND DISCOVERING NEW MUISC WITH OTHER PEOPLE. WITH THIS ADDITIONAL FEATURE IDEA FOR TIDAL, USERS CAN VIEW OTHER MEMBERS DISCOVERY PLAYLISTS AS WELL AS PUBLICLY SHARED PLAYLISTS TO FOSTER FINDING NEW ARTISTS THROUGH HUMAN CONNECTION.',
+      tools: ['FIGMA'],
+    },
+  },
 ]
 
 function DescCard({ slug, info, onCaseStudy }) {
@@ -90,6 +131,45 @@ function DescCard({ slug, info, onCaseStudy }) {
 
 export default function Work({ dark }) {
   const router = useRouter()
+  // Restore the last toggled year so returning from a project (back button or
+  // "BACK TO WORK") keeps the same year selected. Reads on the client during
+  // client-side navigation, so there's no flash back to the default.
+  const [selectedYear, setSelectedYear] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('work-year') || '[2026]'
+    }
+    return '[2026]'
+  })
+  const spinRef = useRef(null)
+
+  useEffect(() => {
+    sessionStorage.setItem('work-year', selectedYear)
+  }, [selectedYear])
+
+  const visibleProjects = PROJECTS.filter((p) => p.year === selectedYear)
+
+  // Spinning logo: settle from 90° → 0° once, then spin a full turn (with a
+  // brief pause between turns) forever.
+  useEffect(() => {
+    const el = spinRef.current
+    if (!el) return
+
+    gsap.set(el, { rotation: 90 })
+    const tl = gsap.timeline()
+    tl.to(el, { rotation: 0, duration: 0.8, ease: 'power2.out' })
+      .to(el, {}, '+=1') // pause
+
+    const spin = gsap.timeline({ repeat: -1 })
+    spin.to(el, { rotation: '+=360', duration: 1.4, ease: 'power1.inOut' })
+        .to(el, {}, '+=1') // pause between turns
+    tl.add(spin)
+
+    return () => {
+      spin.kill()
+      tl.kill()
+      gsap.killTweensOf(el)
+    }
+  }, [selectedYear])
 
   function handleCaseStudy(slug) {
     const videoEl = document.querySelector(`[data-project-video="${slug}"]`)
@@ -161,11 +241,22 @@ export default function Work({ dark }) {
       <section className={w.header}>
         <span className={w.headerTitle}>WORK</span>
         <p className={w.headerTag}>[ SELECTED PROJECTS ]</p>
+        <div className={w.yearToggle}>
+          {['[2025]', '[2026]'].map((year) => (
+            <button
+              key={year}
+              className={`${w.yearBtn} ${selectedYear === year ? w.yearBtnActive : ''}`}
+              onClick={() => setSelectedYear(year)}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
       </section>
 
       {/* BENTO CONTAINER */}
       <div className={w.bentoContainer}>
-        {PROJECTS.map((project) => (
+        {visibleProjects.map((project) => (
           <div key={project.slug}>
             {/* ROW LABEL */}
             <div className={w.rowLabel}>
@@ -201,7 +292,12 @@ export default function Work({ dark }) {
                 )
                 if (cell?.logo) return (
                   <div key={j} className={`${w.placeholder} ${w.logoCell}`}>
-                    <img src={cell.logo} alt="" className={w.logoCellImg} />
+                    <img
+                      src={cell.logo}
+                      alt=""
+                      className={w.logoCellImg}
+                      ref={cell.spin ? spinRef : null}
+                    />
                   </div>
                 )
                 if (cell) return (

@@ -18,16 +18,20 @@ const HOME_LINK = { label: 'HOME', href: '/', shape: '/images/shape1.svg', hover
 
 const ALL_HREFS = ['/', ...ALL_LINKS.map(l => l.href)]
 
-function StartBtn({ color, arrowStyle }) {
+function StartBtn({ color, arrowStyle, blend }) {
+  const style = {
+    ...(color ? { color, borderColor: color } : {}),
+    ...(blend ? { background: 'transparent' } : {}),
+  }
   return (
-    <Link href="/contact" className={s.btn} style={color ? { color, borderColor: color } : {}}>
+    <Link href="/contact" className={s.btn} style={style}>
       START A PROJECT
       <img src={ARROW} alt="" className={s.btnArrow} style={arrowStyle} />
     </Link>
   )
 }
 
-export default function Nav({ dark, onToggleDark, navColor }) {
+export default function Nav({ dark, onToggleDark, navColor, navBlend }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [hoveredImg, setHoveredImg] = useState(null) // { src, index }
   const menuRef = useRef(null)
@@ -36,8 +40,13 @@ export default function Nav({ dark, onToggleDark, navColor }) {
   const shapeTlRef = useRef(null)
   const router = useRouter()
 
-  const textStyle = navColor ? { color: navColor } : {}
-  const imgFilter = navColor
+  // On blend routes the nav renders white and the container blends with the
+  // video behind it (see nav style below), so each item stays legible.
+  const effColor = navBlend ? '#fff' : navColor
+  const textStyle = effColor ? { color: effColor } : {}
+  const imgFilter = navBlend
+    ? { filter: 'brightness(0) invert(1)' }
+    : navColor
     ? { filter: 'brightness(0) invert(1) brightness(0.851)' }
     : {}
 
@@ -148,7 +157,7 @@ export default function Nav({ dark, onToggleDark, navColor }) {
 
   return (
     <>
-      <nav data-anim="nav" className={s.nav} style={menuOpen ? { position: 'relative', zIndex: 1001 } : {}}>
+      <nav data-anim="nav" className={s.nav} style={menuOpen ? { position: 'relative', zIndex: 1001 } : (navBlend ? { mixBlendMode: 'difference' } : {})}>
         <Link href="/">
           <img
             src={LOGO} alt="Matte Brown" className={s.logo}
@@ -163,12 +172,12 @@ export default function Nav({ dark, onToggleDark, navColor }) {
         </button>
         <button
           className={s.darkToggle} onClick={() => setMenuOpen(o => !o)}
-          style={menuOpen && navColor ? { color: dark ? '#d9d9d9' : '#0e0e0e' } : textStyle}
+          style={menuOpen && (navColor || navBlend) ? { color: dark ? '#d9d9d9' : '#0e0e0e' } : textStyle}
         >
           {menuOpen ? '[ CLOSE ]' : '[ MENU ]'}
         </button>
         <div className={s.navStartBtn} style={menuOpen ? { opacity: 0, pointerEvents: 'none' } : {}}>
-          <StartBtn color={navColor} arrowStyle={imgFilter} />
+          <StartBtn color={effColor} arrowStyle={imgFilter} blend={navBlend} />
         </div>
       </nav>
 
