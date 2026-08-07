@@ -13,18 +13,21 @@ import s from '../styles/Playground.module.css'
 //
 const CELLS_DATA = [
   { id: 1,  type: 'image', src: '/images/craterLake.jpg',  poster: null, category: 'Photography', alt: 'Crater Lake', playOnClick: false },
-  { id: 2,  type: 'image', src: '/images/mas.jpg',          poster: null, category: 'Photography', alt: 'matts son',   playOnClick: false },
+  { id: 2,  type: 'image', src: '/images/mas.JPG',          poster: null, category: 'Photography', alt: 'matts son',   playOnClick: false },
   { id: 3,  type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 4,  type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 5,  type: 'video', src: 'https://matte-cdn.b-cdn.net/rockmanEdit%20(1).mp4', poster: null, category: 'Videos', alt: '', playOnClick: true },
-  { id: 6,  type: 'image', src: '/images/instruments.jpg',  poster: null, category: 'Photography', alt: 'instruments', playOnClick: false },
+  { id: 6,  type: 'image', src: '/images/instruments.JPG',  poster: null, category: 'Photography', alt: 'instruments', playOnClick: false },
   { id: 7,  type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 8,  type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 9,  type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 10, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 11, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   { id: 12, type: 'video', src: 'https://matte-cdn.b-cdn.net/AISystems.mp4', poster: null, category: 'Videos', alt: '', playOnClick: true },
-  { id: 13, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
+  { id: 13, type: 'video', src: 'https://matte-cdn.b-cdn.net/Human-Factor1.mp4', poster: null, category: 'Videos', alt: '', playOnClick: true },
+  { id: 14, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
+  // { id: 15, type: 'video', src: 'https://matte-cdn.b-cdn.net/Human-Factor1.mp4', poster: null, category: 'Videos', alt: '', playOnClick: true },
+  { id: 16, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
 ]
 // ──────────────────────────────────────────────────────────────────────────────
 
