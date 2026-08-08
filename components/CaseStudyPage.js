@@ -8,12 +8,17 @@ const ARROW = '/images/arrowUpRight.svg'
 
 // Each story video only starts downloading as it nears the viewport, so they
 // load one-by-one as the reader scrolls. A shimmer skeleton shows until the
-// video can play, then it fades in.
+// video can play, then it fades in. Playback is driven explicitly on visibility
+// (rather than the `autoplay` attribute) so it reliably starts when actually on
+// screen and pauses when it leaves.
 function LazyStoryVideo({ src }) {
   const wrapRef = useRef(null)
-  const [inView, setInView] = useState(false)
+  const videoRef = useRef(null)
+  const [inView, setInView] = useState(false)   // near viewport → mount + load
+  const [visible, setVisible] = useState(false) // actually on screen → play
   const [loaded, setLoaded] = useState(false)
 
+  // Mount/load a little before it scrolls into view.
   useEffect(() => {
     const el = wrapRef.current
     if (!el) return
@@ -24,25 +29,57 @@ function LazyStoryVideo({ src }) {
           io.disconnect()
         }
       },
-      { rootMargin: '600px 0px' } // begin loading a little before it scrolls in
+      { rootMargin: '600px 0px' }
     )
     io.observe(el)
     return () => io.disconnect()
   }, [])
+
+  // Track true on-screen visibility to drive play/pause.
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.15 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  // Play when visible, pause when not. Retries whenever the video mounts,
+  // becomes playable, or visibility changes — so it never gets stuck paused.
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (visible) {
+      const p = v.play()
+      if (p && p.catch) p.catch(() => {})
+    } else {
+      v.pause()
+    }
+  }, [visible, inView, loaded])
 
   return (
     <div ref={wrapRef} className={cs.storyVideoWrap}>
       {!loaded && <div className={cs.storySkeleton} aria-hidden="true" />}
       {inView && (
         <video
+          ref={videoRef}
           src={src}
           className={cs.storyFullImg}
           style={{ opacity: loaded ? 1 : 0 }}
-          autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           onLoadedData={() => setLoaded(true)}
+          onCanPlay={() => {
+            if (visible) {
+              const p = videoRef.current?.play()
+              if (p && p.catch) p.catch(() => {})
+            }
+          }}
         />
       )}
     </div>
