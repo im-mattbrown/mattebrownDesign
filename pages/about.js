@@ -288,9 +288,9 @@ export default function About({ dark }) {
         <hr className={s.divider} />
         <div className={s.footerTop}>
           <div data-anim="fade-l" className={s.footerSocials}>
-            <a href="#">linkedin</a>
-            <a href="#">RESUME</a>
-            <a href="#">email</a>
+            <a href="https://www.linkedin.com/in/mattericbrown/" target="_blank" rel="noopener noreferrer">linkedin</a>
+            <a href="/matt_resume_2026.pdf" download="matt_resume_2026.pdf">RESUME</a>
+            <a href="mailto:m@monomstud.io">email</a>
           </div>
           <div className={s.footerHeading}>
             <h2 data-anim="fade-up" className={s.footerTitle}>

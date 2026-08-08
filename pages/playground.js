@@ -28,6 +28,10 @@ const CELLS_DATA = [
   { id: 14, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
   // { id: 15, type: 'video', src: 'https://matte-cdn.b-cdn.net/Human-Factor1.mp4', poster: null, category: 'Videos', alt: '', playOnClick: true },
   { id: 16, type: null,    src: null,                        poster: null, category: null,           alt: '',           playOnClick: false },
+  { id: 17, type: 'video', src: 'https://matte-cdn.b-cdn.net/HCI-02%20(1).mp4', poster: null, category: 'Videos', alt: '', playOnClick: true }, // row 9  — left
+  { id: 18, type: 'video', src: 'https://matte-cdn.b-cdn.net/DBFinal.mp4', poster: null, category: 'Websites', alt: '', playOnClick: true }, // row 10 — center
+  { id: 19, type: 'video', src: 'https://matte-cdn.b-cdn.net/HCI-02%20(1).mp4', poster: null, category: 'Videos', alt: '', playOnClick: true }, // row 11 — right
+  { id: 20, type: 'video', src: 'https://matte-cdn.b-cdn.net/HCI-02%20(1).mp4', poster: null, category: 'Videos', alt: '', playOnClick: true }, // row 12 — center
 ]
 // ──────────────────────────────────────────────────────────────────────────────
 
