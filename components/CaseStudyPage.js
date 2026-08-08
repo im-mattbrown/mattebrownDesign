@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import s from '../styles/Home.module.css'
@@ -6,18 +6,61 @@ import cs from '../styles/CaseStudy.module.css'
 
 const ARROW = '/images/arrowUpRight.svg'
 
+// Each story video only starts downloading as it nears the viewport, so they
+// load one-by-one as the reader scrolls. A shimmer skeleton shows until the
+// video can play, then it fades in.
+function LazyStoryVideo({ src }) {
+  const wrapRef = useRef(null)
+  const [inView, setInView] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '600px 0px' } // begin loading a little before it scrolls in
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <div ref={wrapRef} className={cs.storyVideoWrap}>
+      {!loaded && <div className={cs.storySkeleton} aria-hidden="true" />}
+      {inView && (
+        <video
+          src={src}
+          className={cs.storyFullImg}
+          style={{ opacity: loaded ? 1 : 0 }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onLoadedData={() => setLoaded(true)}
+        />
+      )}
+    </div>
+  )
+}
+
 function StoryBlock({ block }) {
   if (block.type === 'sectionTitle') return (
     <h2 className={cs.storySectionTitle}>{block.text}</h2>
   )
   if (block.type === 'fullImage') return (
-    <img src={block.src} alt={block.alt || ''} className={cs.storyFullImg} />
+    <img src={block.src} alt={block.alt || ''} className={cs.storyFullImg} loading="lazy" decoding="async" />
   )
   if (block.type === 'text') return (
     <p className={cs.storyText}>{block.text}</p>
   )
   if (block.type === 'fullVideo') return (
-    <video src={block.src} className={cs.storyFullImg} autoPlay loop muted playsInline />
+    <LazyStoryVideo src={block.src} />
   )
   return null
 }

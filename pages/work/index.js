@@ -129,6 +129,49 @@ function DescCard({ slug, info, onCaseStudy }) {
   )
 }
 
+// Videos only start downloading once they near the viewport, and a shimmer
+// skeleton shows until the video can play — then it fades in.
+function LazyVideo({ src, hero, slug }) {
+  const wrapRef = useRef(null)
+  const [inView, setInView] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '500px 0px' } // begin loading a little before it scrolls in
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <div ref={wrapRef} className={w.placeholder}>
+      {!loaded && <div className={w.mediaSkeleton} aria-hidden="true" />}
+      {inView && (
+        <video
+          src={src}
+          className={w.cellVideo}
+          style={{ opacity: loaded ? 1 : 0 }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onLoadedData={() => setLoaded(true)}
+          {...(hero ? { 'data-project-video': slug } : {})}
+        />
+      )}
+    </div>
+  )
+}
+
 export default function Work({ dark }) {
   const router = useRouter()
   // Restore the last toggled year so returning from a project (back button or
@@ -273,17 +316,7 @@ export default function Work({ dark }) {
                   <DescCard key={j} slug={project.slug} info={project.info} onCaseStudy={handleCaseStudy} />
                 )
                 if (cell?.video) return (
-                  <div key={j} className={w.placeholder}>
-                    <video
-                      src={cell.video}
-                      className={w.cellVideo}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      {...(cell.hero ? { 'data-project-video': project.slug } : {})}
-                    />
-                  </div>
+                  <LazyVideo key={j} src={cell.video} hero={cell.hero} slug={project.slug} />
                 )
                 if (cell?.comingSoon) return (
                   <div key={j} className={`${w.placeholder} ${w.comingSoonCell}`}>
@@ -296,13 +329,15 @@ export default function Work({ dark }) {
                       src={cell.logo}
                       alt=""
                       className={w.logoCellImg}
+                      loading="lazy"
+                      decoding="async"
                       ref={cell.spin ? spinRef : null}
                     />
                   </div>
                 )
                 if (cell) return (
                   <div key={j} className={w.placeholder}>
-                    <img src={cell} alt="" className={w.cellImg} />
+                    <img src={cell} alt="" className={w.cellImg} loading="lazy" decoding="async" />
                   </div>
                 )
                 return <div key={j} className={w.placeholder} />
