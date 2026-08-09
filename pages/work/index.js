@@ -15,7 +15,7 @@ const PROJECTS = [
     type: 'WEB / MOBILE APP',
     year: '[2026]',
     slug: 'thatsonme',
-    cells: [{ video: 'https://matte-cdn.b-cdn.net/THATSONMEDESIGN.mp4', hero: true }, '/images/thatsonmeScreens.jpg', 'desc'],
+    cells: [{ video: 'https://matte-cdn.b-cdn.net/out/THATSONMEDESIGN.mp4', hero: true }, '/images/thatsonmeScreens.jpg', 'desc'],
     rowClass: 'row1',
     info: {
       description: "VIRTUAL CLOTHES TRYON APP USING GOOGLE'S NANOBANANA IMAGE GENERATION MODEL TO MIX IMAGES OF USERS AND ITEMS OF CLOTHING. USERS GET AN IDEA OF WHAT CLOTHES WILL LOOK LIKE ON THEM AND BUSINESSES WILL HAVE LESS CARTS GO EMPTY. DESIGNED IN FIGMA BUILT WITH CLAUDE CODE",
@@ -28,7 +28,7 @@ const PROJECTS = [
     type: 'WEB APP',
     year: '[2026]',
     slug: 'shrtcts',
-    cells: ['desc', { video: 'https://matte-cdn.b-cdn.net/shrtctsDesign.mp4', hero: true }, { logo: '/images/logos/shrtctsLogoMark.svg' }],
+    cells: ['desc', { video: 'https://matte-cdn.b-cdn.net/out/shrtctsDesign.mp4', hero: true }, { logo: '/images/logos/shrtctsLogoMark.svg' }],
     rowClass: 'row2',
     info: {
       description: 'SHRTCTS.IO IS A TOOL FOR BUILDERS THAT WANT TO INCREASE THEIR PRODUCTIVITY USING APPS SUCH AS FIGMA, MIRO AND VSCODE BY TRAINING TO LEARN KEYBOARD SHORTCUTS TO BECOME POWER USERS WITH THE KNOWLEDGE TO WORK FASTER AND SMARTER.',
@@ -41,7 +41,7 @@ const PROJECTS = [
     type: 'WEB APP',
     year: '[2026]',
     slug: 'curl',
-    cells: [{ video: 'https://matte-cdn.b-cdn.net/curlSign.mp4' }, 'desc', { video: 'https://matte-cdn.b-cdn.net/curlDesignVideo.mp4', hero: true }],
+    cells: [{ video: 'https://matte-cdn.b-cdn.net/curlSign.mp4' }, 'desc', { video: 'https://matte-cdn.b-cdn.net/out/curlDesignVideo.mp4', hero: true }],
     rowClass: 'row3',
     info: {
       description: 'CURL IS A SITE FOR DISCOVERING INTERESTING THINGS ONLINE. LARGE PLATFORMS HAVE BECOME THE GATEKEEPERS OF ONLINE CONTENT BUT IT DOES NOT HAVE TO BE LIKE THIS. WITH OVER 3000 CURATED SITES ON CURL, USERS CAN FIND NEW AND INTERESTING WEBSITES AND WEB APPLICATIONS BASED ON THEIR INTERESTS.',
@@ -67,7 +67,7 @@ const PROJECTS = [
     type: 'MOBILE APP',
     year: '[2025]',
     slug: 'contexto',
-    cells: [{ video: 'https://matte-cdn.b-cdn.net/contextoMain.mp4', hero: true }, 'desc', {logo: 'https://matte-cdn.b-cdn.net/AVATAR.png'}],
+    cells: [{ video: 'https://matte-cdn.b-cdn.net/out/contextoMain.mp4', hero: true }, 'desc', {logo: 'https://matte-cdn.b-cdn.net/AVATAR.png'}],
     rowClass: 'row1',
     info: {
       description: 'CONTEXTO IS AN AI DRIVEN LANGUAGE LEARNING APPLICATION FOR INTERMEDIATE TO ADVANCED LEVEL LANGUAGE LEARNERS. USERS ARE TASKED WITH 5 DIFFERENT LANGUAGE EXCERCISES PER DAY THAT CLOSELY MIRROR IMMERSIVE EXPERIENCES TO ACCELERATE ACHIEVING FLUENCY.',
@@ -81,7 +81,7 @@ const PROJECTS = [
     type: 'WEB APP',
     year: '[2025]',
     slug: 'curated',
-    cells: ['desc', { video: 'https://matte-cdn.b-cdn.net/curatedMain.mp4', hero: true }, { logo: 'https://matte-cdn.b-cdn.net/contextoLogoHD.png', spin: true }],
+    cells: ['desc', { video: 'https://matte-cdn.b-cdn.net/out/curatedMain.mp4', hero: true }, { logo: 'https://matte-cdn.b-cdn.net/contextoLogoHD.png', spin: true }],
     rowClass: 'row2',
     info: {
       description: 'THE RIGHT PLAYLIST CAN COMPLETELY CHANGE AN EXPERIENCE, MAKING A TIME AND PLACE MORE MEMORABLE. TODAY WE INCREASINGLY RELY ON ALGORITHMS TO DRIVE MUSIC DISCOVERY AND INFORM OUR MUSIC CHOICES. CURATED TAKES THE POWER BACK TO THE PEOPLE THAT DEFINE TASTE BY PROVIDING A MARKETPLACE OF WELL CRAFTED MUSIC PLAYLISTS AND MUSIC BASED STORIES.',
@@ -94,7 +94,7 @@ const PROJECTS = [
     type: 'FEATURE ADDITION',
     year: '[2025]',
     slug: 'tidal',
-    cells: [{logo: 'https://matte-cdn.b-cdn.net/USERTIDAL.jpg'}, 'desc',{ video: 'https://matte-cdn.b-cdn.net/TidalMain.mp4', hero: true } ],
+    cells: [{logo: 'https://matte-cdn.b-cdn.net/USERTIDAL.jpg'}, 'desc',{ video: 'https://matte-cdn.b-cdn.net/out/TidalMain.mp4', hero: true } ],
     rowClass: 'row3',
     info: {
       description: 'MODERN MUSIC STREAMING PLATFORMS ALL SEEM TO IGNORE THE MOST IMPORTANT PART OF EXPERIENCING MUSIC - SHARING AND DISCOVERING NEW MUISC WITH OTHER PEOPLE. WITH THIS ADDITIONAL FEATURE IDEA FOR TIDAL, USERS CAN VIEW OTHER MEMBERS DISCOVERY PLAYLISTS AS WELL AS PUBLICLY SHARED PLAYLISTS TO FOSTER FINDING NEW ARTISTS THROUGH HUMAN CONNECTION.',

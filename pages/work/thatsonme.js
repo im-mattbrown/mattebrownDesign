@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://matte-cdn.b-cdn.net/THATSONMEDESIGN.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/out/THATSONMEDESIGN.mp4',
   num: '01',
   title: "THAT'S ON ME",
   type: 'WEB / MOBILE APP',
@@ -24,7 +24,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/TOM_FIgma_01.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/TOM_FIgma_01.mp4',
     },
     {
       type: 'sectionTitle',
@@ -32,7 +32,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/TOM_Claude_02.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/TOM_Claude_02.mp4',
     },
     {
       type: 'sectionTitle',
@@ -40,7 +40,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/TOM_Code.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/TOM_Code.mp4',
     },
     {
       type: 'sectionTitle',
@@ -48,7 +48,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/TOM_Testing.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/TOM_Testing.mp4',
     },
     {
       type: 'sectionTitle',
@@ -56,7 +56,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/TOM_Mobile.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/TOM_Mobile.mp4',
     },
     {
       type: 'sectionTitle',
@@ -64,7 +64,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/tom02.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/tom02.mp4',
     },
   ],
 }

@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://matte-cdn.b-cdn.net/shrtctsDesign.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/out/shrtctsDesign.mp4',
   num: '02',
   title: 'SHRTCTS',
   type: 'WEB APP',
@@ -24,7 +24,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/shrtctsFigma.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/shrtctsFigma.mp4',
     },
     {
       type: 'sectionTitle',
@@ -32,7 +32,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/shrtctsClaude.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/shrtctsClaude.mp4',
     },
     {
       type: 'sectionTitle',
@@ -40,7 +40,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/shrtctsThree.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/shrtctsThree.mp4',
     },
     {
       type: 'sectionTitle',
@@ -48,7 +48,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/shrtcsPlay.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/shrtcsPlay.mp4',
     },
     {
       type: 'sectionTitle',
@@ -56,7 +56,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/SHRTCTSCHALLENGE.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/SHRTCTSCHALLENGE.mp4',
     },
   ],
 }

@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://matte-cdn.b-cdn.net/curatedMain.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/out/curatedMain.mp4',
   num: '02',
   title: 'CURATED',
   type: 'WEB APP',
@@ -27,7 +27,7 @@ const config = {
       text: 'Out of this thought was born the idea for an app that pushed new music discovery. I interviewed 6 music creators and enthusiasts in order to better understand how they connect to the artform.',
     },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
-    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/curated011.mp4' },
+    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/out/curated011.mp4' },
     {
       type: 'sectionTitle',
       text: 'What I discovered through these conversations is that people trust music recommendations from other humans that they feel a connection to. Beyond that, most of these participants were interested in the stories behind the music that they were listening to.',
@@ -37,7 +37,7 @@ const config = {
       text: 'My competition analysis revealed a gap in the market. Many playlist marketplaces existed - most of them were geared towards charging artists money to get their music on public playlists. There were no great D2C applications where users could discover expert crafted playlists and blog style music stories.',
     },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
-    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/curated02.mp4' },
+    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/out/curated02.mp4' },
     {
       type: 'sectionTitle',
       text: 'This led me to the idea of an application where users could 1) Discover well crafted playlists and music stories 2) Connect with a community of music enthusiasts 3) Create their own playlists and blog style stories to share with the Curated community',
@@ -47,19 +47,19 @@ const config = {
       text: 'I then had two unique personas to design for. The user that wants to discover new music and the user that wants to make a name for themselves as music curators who share playlists with others.',
     },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
-    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/curated03.mp4' },
+    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/out/curated03.mp4' },
     {
       type: 'sectionTitle',
       text: 'The first draft of wireframes were meant to test users preferences for the dashboard layout inlcuding the Discover page, Profile page and Community page. I built low and mid fidelity wireframes before moving into creating a visual design system and components.',
     },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
-    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/curated04.mp4' },
+    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/out/curated04.mp4' },
     {
       type: 'sectionTitle',
       text: 'The next step was to create resuable components and define the visual identity of Curated. I created screens for the main features of the app and wired them up into a clickable prototype for user testing.',
     },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
-    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/curated05.mp4' },
+    { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/out/curated05.mp4' },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
     // { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/example.mp4' },
     // { type: 'text', text: 'Body paragraph.' },

@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://matte-cdn.b-cdn.net/contextoMain.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/out/contextoMain.mp4',
   num: '01',
   title: 'CONTEXTO',
   type: 'MOBILE APP',
@@ -25,7 +25,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/contexto01.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/contexto01.mp4',
     },
     {
       type: 'sectionTitle',
@@ -41,7 +41,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/contexto02.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/contexto02.mp4',
     },
     {
       type: 'sectionTitle',
@@ -49,7 +49,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/contexto03.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/contexto03.mp4',
     },
     {
       type: 'sectionTitle',
@@ -61,7 +61,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/contexto04.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/contexto04.mp4',
     },
     {
       type: 'sectionTitle',
@@ -77,7 +77,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/contexto05.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/contexto05.mp4',
     },
     // { type: 'fullImage', src: '/images/example.png', alt: 'example' },
     // { type: 'fullVideo', src: 'https://matte-cdn.b-cdn.net/example.mp4' },

@@ -1,7 +1,7 @@
 import CaseStudyPage from '../../components/CaseStudyPage'
 
 const config = {
-  heroVideo: 'https://matte-cdn.b-cdn.net/curlDesignVideo.mp4',
+  heroVideo: 'https://matte-cdn.b-cdn.net/out/curlDesignVideo.mp4',
   num: '03',
   title: 'CURL',
   type: 'WEB APP',
@@ -33,7 +33,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/CURL_MCP.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/CURL_MCP.mp4',
     },
     {
       type: 'sectionTitle',
@@ -41,7 +41,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/curlDesignFigma.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/curlDesignFigma.mp4',
     },
     {
       type: 'sectionTitle',
@@ -49,7 +49,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/curlClaudeChat.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/curlClaudeChat.mp4',
     },
     {
       type: 'sectionTitle',
@@ -57,7 +57,7 @@ const config = {
     },
     {
       type: 'fullVideo',
-      src: 'https://matte-cdn.b-cdn.net/curl02.mp4',
+      src: 'https://matte-cdn.b-cdn.net/out/curl02.mp4',
     },
   ],
 }
