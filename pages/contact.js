@@ -170,19 +170,23 @@ export default function Contact() {
                 {messages.map((msg, i) => (
                   msg.role === 'user' ? (
                     <div key={i} className={s.userLine}>
-                      <span className={s.prompt}>{PROMPT_PREFIX}</span>
-                      <span className={s.text}>{msg.content}</span>
+                      <span className={s.userText}>
+                        <span className={s.prompt}>{PROMPT_PREFIX}</span>
+                        <span className={s.text}>{msg.content}</span>
+                      </span>
+                      <div className={s.userAvatar}>you</div>
                     </div>
                   ) : (
-                    <div key={i} className={`${s.assistantLine} ${i === 0 ? s.assistantFirst : ''}`}>
-                      {i === 0 && <img src="/images/logos/chatBotMS.svg" alt="" className={s.botAvatar} />}
+                    <div key={i} className={s.assistantLine}>
+                      <img src="/images/logos/chatBotMS.svg" alt="" className={s.botAvatar} />
                       <span className={s.assistantText}>{msg.content}</span>
                     </div>
                   )
                 ))}
                 {loading && (
                   <div className={s.assistantLine}>
-                    <span className={s.blink}>▋</span>
+                    <img src="/images/logos/chatBotMS.svg" alt="" className={s.botAvatar} />
+                    <span className={s.assistantText}><span className={s.blink}>▋</span></span>
                   </div>
                 )}
                 <div ref={bottomRef} />

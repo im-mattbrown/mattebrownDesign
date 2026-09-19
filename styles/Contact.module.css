@@ -114,13 +114,7 @@
 .messages::-webkit-scrollbar-track { background: transparent; }
 .messages::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
-/* Chatbot avatar shown inline with the first response, like a chat icon */
-.assistantFirst {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
+/* Chatbot avatar shown inline to the left of each response, like a chat icon */
 .botAvatar {
   width: 40px;
   height: 40px;
@@ -133,18 +127,43 @@
   flex: 1;
 }
 
-/* User message: prompt prefix + their text */
+/* User message: prompt prefix + their text, pinned to the right like a chat */
 .userLine {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: flex-end;
+  max-width: 85%;
+  text-align: right;
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 13px;
   line-height: 1.6;
   color: #ffffff;
 }
 
-/* Assistant message: plain terminal output */
+.userText {
+  min-width: 0;
+  word-break: break-word;
+}
+
+/* "you" avatar on the far right of user messages */
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+}
+
+/* Assistant message: avatar icon + terminal output inline */
 .assistantLine {
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 13px;
@@ -152,6 +171,9 @@
   color: #ffffff;
   white-space: pre-wrap;
   word-break: break-word;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .prompt {
