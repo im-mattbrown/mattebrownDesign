@@ -174,8 +174,9 @@ export default function Contact() {
                       <span className={s.text}>{msg.content}</span>
                     </div>
                   ) : (
-                    <div key={i} className={s.assistantLine}>
-                      {msg.content}
+                    <div key={i} className={`${s.assistantLine} ${i === 0 ? s.assistantFirst : ''}`}>
+                      {i === 0 && <img src="/images/logos/chatBotMS.svg" alt="" className={s.botAvatar} />}
+                      <span className={s.assistantText}>{msg.content}</span>
                     </div>
                   )
                 ))}

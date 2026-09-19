@@ -114,6 +114,25 @@
 .messages::-webkit-scrollbar-track { background: transparent; }
 .messages::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
+/* Chatbot avatar shown inline with the first response, like a chat icon */
+.assistantFirst {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.botAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.assistantText {
+  flex: 1;
+}
+
 /* User message: prompt prefix + their text */
 .userLine {
   display: flex;

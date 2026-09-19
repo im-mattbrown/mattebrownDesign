@@ -667,7 +667,6 @@ export default function Home({ dark }) {
             <a href="/about">about</a>
             <a href="/work">Work</a>
             <a href="/contact">contact</a>
-            <a href="/playground">Playground</a>
           </nav>
         </div>
       </footer>

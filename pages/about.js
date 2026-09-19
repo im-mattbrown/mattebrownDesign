@@ -325,10 +325,9 @@ export default function About({ dark }) {
           </div>
           <nav data-anim="fade-r" className={s.footerNav}>
             <p className={s.footerNavLabel}>[pages]</p>
-            <a href="/home">home</a>
+            <a href="/">home</a>
             <a href="/work">Work</a>
             <a href="/contact">contact</a>
-            <a href="/playground">Playground</a>
           </nav>
         </div>
       </footer>

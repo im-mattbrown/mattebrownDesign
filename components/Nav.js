@@ -10,8 +10,7 @@ const ARROW = '/images/arrowUpRight.svg'
 const ALL_LINKS = [
   { label: 'ABOUT',      href: '/about',      shape: '/images/shape1.svg', hoverImg: '/images/matttrain.jpg' },
   { label: 'WORK',       href: '/work',        shape: '/images/shape2.svg', hoverImg: '/images/works.jpg' },
-  { label: 'CONTACT',    href: '/contact',     shape: '/images/shape1.svg', hoverImg: null },
-  { label: 'PLAYGROUND', href: '/playground',  shape: '/images/shape2.svg', hoverImg: null },
+  { label: 'CONTACT',    href: '/contact',     shape: '/images/shape1.svg', hoverImg: '/images/logos/chatBotMS.svg' },
 ]
 
 const HOME_LINK = { label: 'HOME', href: '/', shape: '/images/shape1.svg', hoverImg: null }
