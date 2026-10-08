@@ -14,7 +14,7 @@ const TESTIMONIALS = [
     image: '/images/auvik.jpeg',
     name: 'Auvik Mir',
     company: 'Founder - Mouse Potato Lab',
-    quote: 'His design expertise effectively bridges the gap between design and development. If you want pixel-perfect output, Matte has you covered!',
+    quote: 'His design expertise effectively bridges the gap between design and development. If you want pixel-perfect output, Matt has you covered!',
   },
   {
     image: '/images/steve.jpeg',
@@ -26,7 +26,7 @@ const TESTIMONIALS = [
     image: '/images/juan2.jpg',
     name: 'Juan Medina',
     company: 'Technical Advisor - Amazon',
-    quote: 'I thoroughly enjoyed working with Matte for several years as part of my startup. He was our first full time hire, and drove getting work done on time, was a great coduit between engineering and the business. I recommend Matte for any web or mobile project, very capable, trustworthy and a good person on top of it all.',
+    quote: 'I thoroughly enjoyed working with Matt for several years as part of my startup. He was our first full time hire, and drove getting work done on time, was a great coduit between engineering and the business. I recommend Matt for any web or mobile project, very capable, trustworthy and a good person on top of it all.',
   },
 ]
 
@@ -305,15 +305,16 @@ export default function Home({ dark }) {
   }, [])
 
   useEffect(() => {
-    if (prevDarkRef.current === null) {
-      prevDarkRef.current = dark
-      return
-    }
+    // On mount the theme may already be dark (toggled on another page, then
+    // navigated back) — play forwards into it, but never run the reverse
+    // animation, since there is no light state to rewind from.
+    const isMount = prevDarkRef.current === null
     prevDarkRef.current = dark
 
     const video = videoRef.current
     const canvas = canvasRef.current
     if (!video) return
+    if (isMount && !dark) return
 
     if (dark) {
       reverseRef.current = null
