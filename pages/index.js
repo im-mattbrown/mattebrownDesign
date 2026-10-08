@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useId } from 'react'
 import { useRouter } from 'next/router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -122,41 +122,74 @@ function drawCover(video, canvas) {
   ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh)
 }
 
+// Builds a smooth, organic blob outline (closed, rounded polygon) around
+// (cx, cy) with the given base radius. `t` (seconds) and `seed` drift the
+// per-point radius with layered sine waves so the blob keeps wobbling
+// gently even while the cursor is still, instead of sitting as a static
+// shape.
+function blobPath(cx, cy, r, t, seed) {
+  if (r <= 0.5) return ''
+  const POINTS = 9
+  const pts = []
+  for (let i = 0; i < POINTS; i++) {
+    const angle = (i / POINTS) * Math.PI * 2
+    const wobble =
+      Math.sin(angle * 3 + t * 1.3 + seed) * 0.13 +
+      Math.sin(angle * 5 - t * 0.9 + seed * 1.7) * 0.07
+    const radius = r * (1 + wobble)
+    pts.push([cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius])
+  }
+  let d = `M ${(pts[0][0] + pts[POINTS - 1][0]) / 2} ${(pts[0][1] + pts[POINTS - 1][1]) / 2} `
+  for (let i = 0; i < POINTS; i++) {
+    const curr = pts[i]
+    const next = pts[(i + 1) % POINTS]
+    const midX = (curr[0] + next[0]) / 2
+    const midY = (curr[1] + next[1]) / 2
+    d += `Q ${curr[0]} ${curr[1]} ${midX} ${midY} `
+  }
+  return d + 'Z'
+}
+
 function ArrowBtn({ label, white, dark, href, to, flashlight }) {
   const router = useRouter()
   const cls = `${s.btn} ${white ? s.btnWhite : ''} ${dark ? s.btnDark : ''} ${flashlight ? s.btnFlashlight : ''}`
   const arrowCls = dark ? s.btnDarkArrow : s.btnArrow
 
-  // Reverse-flashlight hover: a circle tracks the cursor exactly (painted
-  // straight to the DOM on every move, no CSS transition lag) while its
-  // radius eases open/closed via rAF — revealing a dark-bg/light-text copy
-  // of the button clipped to that circle.
-  const overlayRef = useRef(null)
+  // Reverse-flashlight hover: an organic blob (not a plain circle) tracks
+  // the cursor exactly — position is painted straight to the DOM on every
+  // move, no CSS transition lag — while its size eases open/closed via
+  // rAF and its edges keep wobbling, revealing a dark-bg/light-text copy
+  // of the button clipped to that blob shape.
+  // useId() includes colons, which can break `url(#id)` parsing in CSS —
+  // strip them down to a plain alphanumeric id.
+  const clipId = `blob-${useId().replace(/[^a-zA-Z0-9]/g, '')}`
+  const pathRef = useRef(null)
   const rafRef = useRef(null)
   const stateRef = useRef({ x: 0, y: 0, r: 0, target: 0 })
+  const seedRef = useRef(Math.random() * 1000)
 
   useEffect(() => {
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
   }, [])
 
   const paint = () => {
-    const el = overlayRef.current
+    const el = pathRef.current
     if (!el) return
     const { r, x, y } = stateRef.current
-    el.style.clipPath = `circle(${r}px at ${x}px ${y}px)`
+    el.setAttribute('d', blobPath(x, y, r, performance.now() / 1000, seedRef.current))
   }
 
   const tick = () => {
     const st = stateRef.current
     const diff = st.target - st.r
-    if (Math.abs(diff) < 0.5) {
-      st.r = st.target
-      paint()
+    st.r = Math.abs(diff) < 0.4 ? st.target : st.r + diff * 0.108
+    paint()
+    // Keep wobbling continuously while open or still settling; only stop
+    // once fully closed and idle, to save the rAF loop when not hovered.
+    if (st.r <= 0.4 && st.target === 0) {
       rafRef.current = null
       return
     }
-    st.r += diff * 0.12
-    paint()
     rafRef.current = requestAnimationFrame(tick)
   }
 
@@ -201,11 +234,18 @@ function ArrowBtn({ label, white, dark, href, to, flashlight }) {
         <img src={ARROW} alt="" className={arrowCls} />
       </span>
       {flashlight && (
-        <span className={s.btnFlashlightOverlay} ref={overlayRef} aria-hidden="true">
+        <span className={s.btnFlashlightOverlay} style={{ clipPath: `url(#${clipId})` }} aria-hidden="true">
           <span className={s.btnInner}>
             {label}
             <img src={ARROW} alt="" className={s.btnFlashlightArrow} />
           </span>
+          <svg className={s.btnFlashlightSvg} aria-hidden="true">
+            <defs>
+              <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+                <path ref={pathRef} />
+              </clipPath>
+            </defs>
+          </svg>
         </span>
       )}
     </>

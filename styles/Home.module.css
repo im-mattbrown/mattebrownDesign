@@ -42,9 +42,11 @@
 }
 
 /* ─── Flashlight hover ───────────────────────────
-   A circle tracks the cursor (--fx/--fy, set on mousemove) and reveals an
-   inverted dark-bg/light-text copy of the button clipped to that circle —
-   a reverse flashlight. */
+   An organic blob (not a plain circle) tracks the cursor and reveals an
+   inverted dark-bg/light-text copy of the button clipped to that blob —
+   a reverse flashlight. The blob's path is painted onto an SVG <clipPath>
+   by JS (see blobPath() in ArrowBtn); clip-path itself is set inline since
+   it must reference that per-instance clipPath id. */
 .btnFlashlight {
   position: relative;
   overflow: hidden;
@@ -66,13 +68,19 @@
   font-weight: 400;
   text-transform: uppercase;
   white-space: nowrap;
-  clip-path: circle(0px at 0px 0px);
   pointer-events: none;
 }
 
 [data-theme="dark"] .btnFlashlightOverlay {
   background: #d9d9d9;
   color: #0e0e0e;
+}
+
+.btnFlashlightSvg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 .btnFlashlightArrow {
