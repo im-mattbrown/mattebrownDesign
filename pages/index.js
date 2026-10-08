@@ -36,7 +36,7 @@ const TESTIMONIALS = [
 // to that circle — darkens on light theme, lightens on dark theme.
 const SPOTLIGHT_RADIUS = 110
 
-function SpotlightText({ lines }) {
+function SpotlightText({ className, children }) {
   const wrapRef = useRef(null)
   const rafRef = useRef(null)
   const stateRef = useRef({ x: 0, y: 0, r: 0, target: 0 })
@@ -104,12 +104,8 @@ function SpotlightText({ lines }) {
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
-      <div className={s.servicesDesc}>
-        {lines.map((line, i) => <p key={i}>{line}</p>)}
-      </div>
-      <div className={`${s.servicesDesc} ${s.spotlightOverlay}`} aria-hidden="true">
-        {lines.map((line, i) => <p key={i}>{line}</p>)}
-      </div>
+      <div className={className}>{children}</div>
+      <div className={`${className} ${s.spotlightOverlay}`} aria-hidden="true">{children}</div>
     </div>
   )
 }
@@ -779,13 +775,13 @@ export default function Home({ dark }) {
 
       {/* SERVICES */}
       <section className={s.services}>
-        <SpotlightText lines={[
-          'MY WORK COMBINES STRATEGIC INSIGHT WITH',
-          'DESIGN THEORY AND INNOVATIVE THINKING',
-          'TO DELIVER BESPOKE SOLUTIONS THAT ALIGN',
-          'WITH YOUR BUSINESS OBJECTIVES. PARTNER WITH',
-          'ME TO SET YOUR BRAND APART.',
-        ]} />
+        <SpotlightText className={s.servicesDesc}>
+          <p>MY WORK COMBINES STRATEGIC INSIGHT WITH</p>
+          <p>DESIGN THEORY AND INNOVATIVE THINKING</p>
+          <p>TO DELIVER BESPOKE SOLUTIONS THAT ALIGN</p>
+          <p>WITH YOUR BUSINESS OBJECTIVES. PARTNER WITH</p>
+          <p>ME TO SET YOUR BRAND APART.</p>
+        </SpotlightText>
         <ArrowBtn label="MY WORK" white to="/work" />
       </section>
 
@@ -822,12 +818,12 @@ export default function Home({ dark }) {
               </span>
               <span className={s.footerTitleGrey}> ]</span>
             </h2>
-            <p data-anim="fade-up" className={s.footerSub}>
+            <SpotlightText className={s.footerSub}>
               You made it all the way to the footer. Please take some time<br />
               to explore the rest of my portfolio and check out more of my<br />
               work in the work page and the playground page. Thank you<br />
               for taking the time to get to know me!
-            </p>
+            </SpotlightText>
           </div>
           <nav data-anim="fade-r" className={s.footerNav}>
             <p className={s.footerNavLabel}>[pages]</p>

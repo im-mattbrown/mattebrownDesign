@@ -720,10 +720,13 @@
   position: relative;
 }
 
+.spotlightOverlay.spotlightOverlay {
+  color: #0e0e0e;
+}
+
 .spotlightOverlay {
   position: absolute;
   inset: 0;
-  color: #0e0e0e;
   pointer-events: none;
   mask-image:
     radial-gradient(circle var(--sr, 0px) at var(--sx, 50%) var(--sy, 50%), black 0%, black 55%, rgba(0, 0, 0, 0.6) 75%, transparent 100%),
@@ -739,7 +742,7 @@
   -webkit-mask-composite: source-in;
 }
 
-[data-theme="dark"] .spotlightOverlay {
+[data-theme="dark"] .spotlightOverlay.spotlightOverlay {
   color: #f5f5f5;
 }
 
