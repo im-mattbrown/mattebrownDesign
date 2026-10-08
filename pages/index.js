@@ -30,6 +30,90 @@ const TESTIMONIALS = [
   },
 ]
 
+// Flashlight-style spotlight over a block of text: a circle follows the
+// cursor exactly (painted instantly) while its radius eases open/closed
+// via rAF, revealing a theme-inverted, dithered copy of the text clipped
+// to that circle — darkens on light theme, lightens on dark theme.
+const SPOTLIGHT_RADIUS = 110
+
+function SpotlightText({ lines }) {
+  const wrapRef = useRef(null)
+  const rafRef = useRef(null)
+  const stateRef = useRef({ x: 0, y: 0, r: 0, target: 0 })
+
+  useEffect(() => {
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
+  }, [])
+
+  const paint = () => {
+    const el = wrapRef.current
+    if (!el) return
+    const { r, x, y } = stateRef.current
+    el.style.setProperty('--sx', `${x}px`)
+    el.style.setProperty('--sy', `${y}px`)
+    el.style.setProperty('--sr', `${r}px`)
+  }
+
+  const tick = () => {
+    const st = stateRef.current
+    const diff = st.target - st.r
+    if (Math.abs(diff) < 0.5) {
+      st.r = st.target
+      paint()
+      rafRef.current = null
+      return
+    }
+    st.r += diff * 0.12
+    paint()
+    rafRef.current = requestAnimationFrame(tick)
+  }
+
+  const ensureLoop = () => {
+    if (rafRef.current == null) rafRef.current = requestAnimationFrame(tick)
+  }
+
+  const setPoint = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    stateRef.current.x = e.clientX - rect.left
+    stateRef.current.y = e.clientY - rect.top
+  }
+
+  const handleEnter = (e) => {
+    setPoint(e)
+    stateRef.current.target = SPOTLIGHT_RADIUS
+    paint()
+    ensureLoop()
+  }
+
+  const handleMove = (e) => {
+    setPoint(e)
+    paint()
+  }
+
+  const handleLeave = () => {
+    stateRef.current.target = 0
+    ensureLoop()
+  }
+
+  return (
+    <div
+      ref={wrapRef}
+      data-anim="fade-up"
+      className={s.spotlightWrap}
+      onMouseEnter={handleEnter}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+    >
+      <div className={s.servicesDesc}>
+        {lines.map((line, i) => <p key={i}>{line}</p>)}
+      </div>
+      <div className={`${s.servicesDesc} ${s.spotlightOverlay}`} aria-hidden="true">
+        {lines.map((line, i) => <p key={i}>{line}</p>)}
+      </div>
+    </div>
+  )
+}
+
 function drawCover(video, canvas) {
   const { videoWidth: vw, videoHeight: vh } = video
   const { width: cw, height: ch } = canvas
@@ -42,30 +126,112 @@ function drawCover(video, canvas) {
   ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh)
 }
 
-function ArrowBtn({ label, white, dark, href, to }) {
+function ArrowBtn({ label, white, dark, href, to, flashlight }) {
   const router = useRouter()
-  const cls = `${s.btn} ${white ? s.btnWhite : ''} ${dark ? s.btnDark : ''}`
+  const cls = `${s.btn} ${white ? s.btnWhite : ''} ${dark ? s.btnDark : ''} ${flashlight ? s.btnFlashlight : ''}`
   const arrowCls = dark ? s.btnDarkArrow : s.btnArrow
-  if (to) {
-    return (
-      <button className={cls} onClick={() => router.push(to)}>
+
+  // Reverse-flashlight hover: a circle tracks the cursor exactly (painted
+  // straight to the DOM on every move, no CSS transition lag) while its
+  // radius eases open/closed via rAF — revealing a dark-bg/light-text copy
+  // of the button clipped to that circle.
+  const overlayRef = useRef(null)
+  const rafRef = useRef(null)
+  const stateRef = useRef({ x: 0, y: 0, r: 0, target: 0 })
+
+  useEffect(() => {
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
+  }, [])
+
+  const paint = () => {
+    const el = overlayRef.current
+    if (!el) return
+    const { r, x, y } = stateRef.current
+    el.style.clipPath = `circle(${r}px at ${x}px ${y}px)`
+  }
+
+  const tick = () => {
+    const st = stateRef.current
+    const diff = st.target - st.r
+    if (Math.abs(diff) < 0.5) {
+      st.r = st.target
+      paint()
+      rafRef.current = null
+      return
+    }
+    st.r += diff * 0.12
+    paint()
+    rafRef.current = requestAnimationFrame(tick)
+  }
+
+  const ensureLoop = () => {
+    if (rafRef.current == null) rafRef.current = requestAnimationFrame(tick)
+  }
+
+  const setPoint = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    stateRef.current.x = e.clientX - rect.left
+    stateRef.current.y = e.clientY - rect.top
+  }
+
+  const handleEnter = flashlight
+    ? (e) => {
+        setPoint(e)
+        const rect = e.currentTarget.getBoundingClientRect()
+        stateRef.current.target = Math.hypot(rect.width, rect.height)
+        paint()
+        ensureLoop()
+      }
+    : undefined
+
+  const handleMove = flashlight
+    ? (e) => {
+        setPoint(e)
+        paint()
+      }
+    : undefined
+
+  const handleLeave = flashlight
+    ? () => {
+        stateRef.current.target = 0
+        ensureLoop()
+      }
+    : undefined
+
+  const inner = (
+    <>
+      <span className={s.btnInner}>
         {label}
         <img src={ARROW} alt="" className={arrowCls} />
+      </span>
+      {flashlight && (
+        <span className={s.btnFlashlightOverlay} ref={overlayRef} aria-hidden="true">
+          <span className={s.btnInner}>
+            {label}
+            <img src={ARROW} alt="" className={s.btnFlashlightArrow} />
+          </span>
+        </span>
+      )}
+    </>
+  )
+
+  if (to) {
+    return (
+      <button className={cls} onClick={() => router.push(to)} onMouseEnter={handleEnter} onMouseMove={handleMove} onMouseLeave={handleLeave}>
+        {inner}
       </button>
     )
   }
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={`${cls} ${s.btnLink}`}>
-        {label}
-        <img src={ARROW} alt="" className={arrowCls} />
+      <a href={href} target="_blank" rel="noopener noreferrer" className={`${cls} ${s.btnLink}`} onMouseEnter={handleEnter} onMouseMove={handleMove} onMouseLeave={handleLeave}>
+        {inner}
       </a>
     )
   }
   return (
-    <button className={cls}>
-      {label}
-      <img src={ARROW} alt="" className={arrowCls} />
+    <button className={cls} onMouseEnter={handleEnter} onMouseMove={handleMove} onMouseLeave={handleLeave}>
+      {inner}
     </button>
   )
 }
@@ -384,7 +550,7 @@ export default function Home({ dark }) {
             <p>SACRAMENTO, CA</p>
           </div>
           <div className={s.heroBottomCenter}>
-            <ArrowBtn label="MY WORK" />
+            <ArrowBtn label="VIEW MY WORK" to="/work" flashlight />
           </div>
           <p className={s.heroYears}>[ 7+ YEARS OF EXPERIENCE ]</p>
         </div>
@@ -613,13 +779,13 @@ export default function Home({ dark }) {
 
       {/* SERVICES */}
       <section className={s.services}>
-        <div data-anim="fade-up" className={s.servicesDesc}>
-          <p>MY WORK COMBINES STRATEGIC INSIGHT WITH</p>
-          <p>DESIGN THEORY AND INNOVATIVE THINKING</p>
-          <p>TO DELIVER BESPOKE SOLUTIONS THAT ALIGN</p>
-          <p>WITH YOUR BUSINESS OBJECTIVES. PARTNER WITH</p>
-          <p>ME TO SET YOUR BRAND APART.</p>
-        </div>
+        <SpotlightText lines={[
+          'MY WORK COMBINES STRATEGIC INSIGHT WITH',
+          'DESIGN THEORY AND INNOVATIVE THINKING',
+          'TO DELIVER BESPOKE SOLUTIONS THAT ALIGN',
+          'WITH YOUR BUSINESS OBJECTIVES. PARTNER WITH',
+          'ME TO SET YOUR BRAND APART.',
+        ]} />
         <ArrowBtn label="MY WORK" white to="/work" />
       </section>
 

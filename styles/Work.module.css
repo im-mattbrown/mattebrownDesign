@@ -251,6 +251,16 @@
   gap: 10px;
 }
 
+.descColumns {
+  display: flex;
+  gap: 24px;
+}
+
+.descColumns .descSection {
+  flex: 1;
+  min-width: 0;
+}
+
 .descLabel {
   font-size: 11px;
   letter-spacing: 0.1em;

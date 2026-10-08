@@ -33,6 +33,59 @@
   transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
 }
 
+.btnInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  z-index: 0;
+}
+
+/* ─── Flashlight hover ───────────────────────────
+   A circle tracks the cursor (--fx/--fy, set on mousemove) and reveals an
+   inverted dark-bg/light-text copy of the button clipped to that circle —
+   a reverse flashlight. */
+.btnFlashlight {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btnFlashlightOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #0e0e0e;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  white-space: nowrap;
+  clip-path: circle(0px at 0px 0px);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .btnFlashlightOverlay {
+  background: #d9d9d9;
+  color: #0e0e0e;
+}
+
+.btnFlashlightArrow {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="dark"] .btnFlashlightArrow {
+  filter: brightness(0);
+}
+
 .btnWhite {
   background: var(--btn-white-bg);
   border-color: transparent;
@@ -227,9 +280,9 @@
 }
 
 .heroBottom {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: flex-end;
-  justify-content: space-between;
   padding-bottom: 80px;
 }
 
@@ -243,7 +296,6 @@
 .heroBottomCenter {
   display: flex;
   justify-content: center;
-  flex: 1;
 }
 
 .heroYears {
@@ -659,6 +711,38 @@
   text-align: right;
 }
 
+/* ─── Spotlight text (services description) ─────────
+   A dark/light-inverted copy of the text sits on top, masked to a circle
+   that tracks the cursor exactly; a tiled noise PNG intersected with the
+   circle gives the edge a dithered, halftone-grain look instead of a
+   smooth blur. */
+.spotlightWrap {
+  position: relative;
+}
+
+.spotlightOverlay {
+  position: absolute;
+  inset: 0;
+  color: #0e0e0e;
+  pointer-events: none;
+  mask-image:
+    radial-gradient(circle var(--sr, 0px) at var(--sx, 50%) var(--sy, 50%), black 0%, black 55%, rgba(0, 0, 0, 0.6) 75%, transparent 100%),
+    url('/images/ditherNoise.png');
+  mask-repeat: no-repeat, repeat;
+  mask-size: 100% 100%, 10px 10px;
+  mask-composite: intersect;
+  -webkit-mask-image:
+    radial-gradient(circle var(--sr, 0px) at var(--sx, 50%) var(--sy, 50%), black 0%, black 55%, rgba(0, 0, 0, 0.6) 75%, transparent 100%),
+    url('/images/ditherNoise.png');
+  -webkit-mask-repeat: no-repeat, repeat;
+  -webkit-mask-size: 100% 100%, 10px 10px;
+  -webkit-mask-composite: source-in;
+}
+
+[data-theme="dark"] .spotlightOverlay {
+  color: #f5f5f5;
+}
+
 /* ─── Footer ────────────────────────────────────── */
 .footer {
   padding-bottom: 60px;
@@ -909,6 +993,7 @@
 
   /* Hero bottom — "Based in" + MY WORK on one line, years below */
   .heroBottom {
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 12px;

@@ -20,6 +20,7 @@ const PROJECTS = [
     info: {
       description: "VIRTUAL CLOTHES TRYON APP USING GOOGLE'S NANOBANANA IMAGE GENERATION MODEL TO MIX IMAGES OF USERS AND ITEMS OF CLOTHING. USERS GET AN IDEA OF WHAT CLOTHES WILL LOOK LIKE ON THEM AND BUSINESSES WILL HAVE LESS CARTS GO EMPTY. DESIGNED IN FIGMA BUILT WITH CLAUDE CODE",
       tools: ['FIGMA', 'CLAUDE CODE', 'GOOGLE GEMINI', 'NEXT.JS'],
+      role: ['UX RESEARCH', 'UI DESIGN', 'DEVELOPMENT'],
     },
   },
   {
@@ -33,6 +34,7 @@ const PROJECTS = [
     info: {
       description: 'SHRTCTS.IO IS A TOOL FOR BUILDERS THAT WANT TO INCREASE THEIR PRODUCTIVITY USING APPS SUCH AS FIGMA, MIRO AND VSCODE BY TRAINING TO LEARN KEYBOARD SHORTCUTS TO BECOME POWER USERS WITH THE KNOWLEDGE TO WORK FASTER AND SMARTER.',
       tools: ['FIGMA', 'CLAUDE CODE', 'NEXT.JS', 'ADOBE'],
+      role: ['UX RESEARCH', 'UI DESIGN', 'DEVELOPMENT'],
     },
   },
   {
@@ -46,6 +48,7 @@ const PROJECTS = [
     info: {
       description: 'CURL IS A SITE FOR DISCOVERING INTERESTING THINGS ONLINE. LARGE PLATFORMS HAVE BECOME THE GATEKEEPERS OF ONLINE CONTENT BUT IT DOES NOT HAVE TO BE LIKE THIS. WITH OVER 3000 CURATED SITES ON CURL, USERS CAN FIND NEW AND INTERESTING WEBSITES AND WEB APPLICATIONS BASED ON THEIR INTERESTS.',
       tools: ['FIGMA', 'CLAUDE', 'CLAUDE CODE', 'NEXT.JS'],
+      role: ['UX RESEARCH', 'UI DESIGN', 'DEVELOPMENT'],
     },
   },
   {
@@ -59,6 +62,7 @@ const PROJECTS = [
     info: {
       description: 'IF REPLIT AND LOVABLE ARE BIKES WITH TRAINING WHEELS FOR APP BUILDERS, SELFWARE STUDIO IS A BIKE KITCHEN WHERE YOU LEARN TO BUILD THE BIKE BEFORE YOU RIDE. EMPOWERING BUILDERS TO MAKE THEIR OWN SOFTWARE IS THE FUTURE.',
       tools: ['FIGMA', 'FIGMA MCP', 'CLAUDE CODE', 'NEXT.JS'],
+      role: ['UX RESEARCH', 'UI DESIGN', 'DEVELOPMENT'],
     },
   },
   {
@@ -72,6 +76,7 @@ const PROJECTS = [
     info: {
       description: 'CONTEXTO IS AN AI DRIVEN LANGUAGE LEARNING APPLICATION FOR INTERMEDIATE TO ADVANCED LEVEL LANGUAGE LEARNERS. USERS ARE TASKED WITH 5 DIFFERENT LANGUAGE EXCERCISES PER DAY THAT CLOSELY MIRROR IMMERSIVE EXPERIENCES TO ACCELERATE ACHIEVING FLUENCY.',
       tools: ['FIGMA', 'FIGJAM'],
+      role: ['UX RESEARCH', 'UI DESIGN'],
     },
   },
   {
@@ -86,6 +91,7 @@ const PROJECTS = [
     info: {
       description: 'THE RIGHT PLAYLIST CAN COMPLETELY CHANGE AN EXPERIENCE, MAKING A TIME AND PLACE MORE MEMORABLE. TODAY WE INCREASINGLY RELY ON ALGORITHMS TO DRIVE MUSIC DISCOVERY AND INFORM OUR MUSIC CHOICES. CURATED TAKES THE POWER BACK TO THE PEOPLE THAT DEFINE TASTE BY PROVIDING A MARKETPLACE OF WELL CRAFTED MUSIC PLAYLISTS AND MUSIC BASED STORIES.',
       tools: ['FIGMA'],
+      role: ['UX RESEARCH', 'UI DESIGN'],
     },
   },
   {
@@ -99,6 +105,7 @@ const PROJECTS = [
     info: {
       description: 'MODERN MUSIC STREAMING PLATFORMS ALL SEEM TO IGNORE THE MOST IMPORTANT PART OF EXPERIENCING MUSIC - SHARING AND DISCOVERING NEW MUISC WITH OTHER PEOPLE. WITH THIS ADDITIONAL FEATURE IDEA FOR TIDAL, USERS CAN VIEW OTHER MEMBERS DISCOVERY PLAYLISTS AS WELL AS PUBLICLY SHARED PLAYLISTS TO FOSTER FINDING NEW ARTISTS THROUGH HUMAN CONNECTION.',
       tools: ['FIGMA'],
+      role: ['UX RESEARCH', 'UI DESIGN'],
     },
   },
 ]
@@ -110,16 +117,29 @@ function DescCard({ slug, info, onCaseStudy }) {
         <p className={w.descLabel}>DESCRIPTION</p>
         <p className={w.descText}>{info.description}</p>
       </div>
-      <div className={w.descSection}>
-        <p className={w.descLabel}>TOOLS USED</p>
-        <ul className={w.toolsList}>
-          {info.tools.map((tool, i) => (
-            <li key={i} className={w.toolsItem}>
-              <img src={BULLET} alt="" className={w.toolsBullet} />
-              {tool}
-            </li>
-          ))}
-        </ul>
+      <div className={w.descColumns}>
+        <div className={w.descSection}>
+          <p className={w.descLabel}>TOOLS USED</p>
+          <ul className={w.toolsList}>
+            {info.tools.map((tool, i) => (
+              <li key={i} className={w.toolsItem}>
+                <img src={BULLET} alt="" className={w.toolsBullet} />
+                {tool}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={w.descSection}>
+          <p className={w.descLabel}>ROLE</p>
+          <ul className={w.toolsList}>
+            {info.role.map((item, i) => (
+              <li key={i} className={w.toolsItem}>
+                <img src={BULLET} alt="" className={w.toolsBullet} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <button className={w.caseStudyBtn} onClick={() => onCaseStudy(slug)}>
         CASE STUDY
